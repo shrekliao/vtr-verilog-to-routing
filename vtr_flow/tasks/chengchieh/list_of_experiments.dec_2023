@@ -1,0 +1,16 @@
+#COFFEE2
+4bit_adder_double_chain_arch.non_ml.diffeq2
+4bit_adder_double_chain_arch.ml.reduction_layer
+4bit_adder_double_chain_arch.non_ml.spree
+4bit_adder_double_chain_arch.ml.softmax
+#
+k6FracN10LB_mem20K_complexDSP_customSB_22nm.non_ml.diffeq2
+k6FracN10LB_mem20K_complexDSP_customSB_22nm.ml.reduction_layer
+k6FracN10LB_mem20K_complexDSP_customSB_22nm.non_ml.spree
+k6FracN10LB_mem20K_complexDSP_customSB_22nm.ml.softmax
+#
+#k6_frac_N10_4add_2chains_depop50_mem20K_22nm
+#k6_frac_N10_4add_2chains_depop50_mem20K_22nm.non_ml.diffeq2
+#k6_frac_N10_4add_2chains_depop50_mem20K_22nm.ml.eltwise_layer
+#k6_frac_N10_4add_2chains_depop50_mem20K_22nm.non_ml.spree
+#k6_frac_N10_4add_2chains_depop50_mem20K_22nm.ml.softmax
