@@ -1,0 +1,26 @@
+##############################################
+# Configuration file for running experiments
+##############################################
+
+# Path to directory of circuits to use
+circuits_dir=benchmarks/verilog
+
+# Path to directory of architectures to use
+archs_dir=arch/COFFE_22nm
+
+# Add circuits to list to sweep
+circuit_list_add=diffeq2.v
+
+# Add architectures to list to sweep
+arch_list_add=4bit_adder_double_chain_arch.xml
+
+# Parse info and how to parse
+parse_file=vpr_standard.txt
+
+# Pass requirements
+pass_requirements_file=pass_requirements.txt
+
+# VPR parameters
+script_params=-track_memory_usage -crit_path_router_iterations 100 --route_chan_width 300 --full_stats on
+#script_params=--const_gen_inference comb --timing_report_detail aggregated --sdc_file <sdc_full_path> --route_chan_width 300 
+#script_params=--const_gen_inference comb --timing_report_detail aggregated --sdc_file <sdc_full_path> --route_chan_width 300 -power -cmos_tech /export/aman/vtr_aman/vtr-verilog-to-routing/vtr_flow/tech/PTM_22nm/22nm.xml
