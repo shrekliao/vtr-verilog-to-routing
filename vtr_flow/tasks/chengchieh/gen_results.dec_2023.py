@@ -44,8 +44,8 @@ class GenResults():
                     "num_routed_nets", \
                     "total_nets_routed", \
                     "total_connections_routed", \
-                    "total_heap_pushes", \
-                    "total_heap_pops", \
+                    #"total_heap_pushes", \
+                    #"total_heap_pops", \
                     "average_net_length", \
                     "max_net_length", \
                     "max_fanout", \
@@ -58,8 +58,8 @@ class GenResults():
                     "resource_usage_clb", \
                     "resource_usage_dsp", \
                     "resource_usage_memory", \
-                    "dual_port_ram", \
-                    "single_port_ram", \
+                    "dual_port_ram_before_vpr", \
+                    "single_port_ram_before_vpr", \
                     "resource_usage_memory_storage", \
                     "resource_usage_memory_compute", \
                     "total_num_fle", \
@@ -69,28 +69,37 @@ class GenResults():
                     "utilization_io", \
                     "block_input", \
                     "block_output", \
-                    "block_latch", \
                     "utilization_clb", \
                     "utilization_dsp", \
                     "utilization_memory", \
                     "utilization_device", \
+                    "two_mult_18x19", \
+                    "mult_9x9_fixed_pt", \
+                    "mult_add", \
+                    "one_mult_27x27", \
                     "device_io", \
                     "device_clb", \
                     "device_dsp", \
                     "device_memory", \
                     "single_bit_adders", \
                     "luts", \
-                    "0_lut", \
-                    "6_lut", \
+                    #"0_lut", \
+                    #"6_lut", \
                     "lut3", \
                     "lut4", \
                     "lut5", \
                     "lut6", \
                     "ffs", \
+                    "mem_512x40_sp", \
+                    "mem_2048x10_dp", \
+                    "mem_1024x20_dp", \
+                    "memory_slice", \
                     "ff_to_lut_ratio", \
                     "dsp_to_clb_ratio", \
                     "memory_to_clb_ratio", \
                     "adder_to_lut_ratio", \
+                    "dsp_to_lut_ratio", \
+                    "memory_to_lut_ratio", \
                     "netlist_primitives", \
                     "netlist_primitives>10k", \
                     "vtr_flow_elapsed_time", \
@@ -295,8 +304,10 @@ class GenResults():
 
         resource_usage_ff = 0
         resource_usage_adder = 0
+        #resource_usage_memory = 0
         resource_usage_memory_compute = 0
         resource_usage_lut = 0
+        num_memory_slice = 0
         pb_types_usage = False
         routing_channel_util_section = False
         largest_pct_of_total_channels = 0.0
@@ -397,8 +408,8 @@ class GenResults():
           if total_routed_match is not None:
             total_nets_routed = total_routed_match.group(1)
             total_connections_routed = total_routed_match.group(2)
-            total_heap_pushes = total_routed_match.group(3)
-            total_heap_pops = total_routed_match.group(4)
+            #total_heap_pushes = total_routed_match.group(3)
+            #total_heap_pops = total_routed_match.group(4)
             result_dict['total_nets_routed'] = float(total_nets_routed) or "Not found"
 
           #total_connections_routed_match = re.search(r'total_connections_routed: (.*)', line)
@@ -409,12 +420,12 @@ class GenResults():
           #total_heap_pushes_match = re.search(r'total_heap_pushes: (.*)', line)
           #if total_heap_pushes_match is not None:
           #  total_heap_pushes = total_heap_pushes_match.group(1)
-            result_dict['total_heap_pushes'] = float(total_heap_pushes) or "Not found"
+          #  result_dict['total_heap_pushes'] = float(total_heap_pushes) or "Not found"
 #
           #total_heap_pops_match = re.search(r'total_heap_pops: (.*)', line)
           #if total_heap_pops_match is not None:
           #  total_heap_pops= total_heap_pops_match.group(1)
-            result_dict['total_heap_pops'] = float(total_heap_pops) or "Not found"
+          #  result_dict['total_heap_pops'] = float(total_heap_pops) or "Not found"
 
           average_net_length_match = re.search(r'average net length: (.*)', line)
           if average_net_length_match is not None:
@@ -476,6 +487,41 @@ class GenResults():
             utilization_dsp = utilization_dsp_match.group(1)
             result_dict['utilization_dsp'] = float(utilization_dsp) or 0
 
+          two_mult_18x19_match = re.search(r'two_mult_18x19\s*:\s*(\d+)', line)
+          if two_mult_18x19_match is not None:
+            two_mult_18x19 = two_mult_18x19_match.group(1)
+            result_dict['two_mult_18x19'] = float(two_mult_18x19) or 0
+
+          mult_9x9_fixed_pt_match = re.search(r'mult_9x9_fixed_pt\s*:\s*(\d+)', line)
+          if mult_9x9_fixed_pt_match is not None:
+            mult_9x9_fixed_pt = mult_9x9_fixed_pt_match.group(1)
+            result_dict['mult_9x9_fixed_pt'] = float(mult_9x9_fixed_pt) or 0
+
+          mult_add_match = re.search(r'mult_add\s*:\s*(\d+)', line)
+          if mult_add_match is not None:
+            mult_add = mult_add_match.group(1)
+            result_dict['mult_add'] = float(mult_add) or 0
+
+          one_mult_27x27_match = re.search(r'one_mult_27x27\s*:\s*(\d+)', line)
+          if one_mult_27x27_match is not None:
+            one_mult_27x27 = one_mult_27x27_match.group(1)
+            result_dict['one_mult_27x27'] = float(one_mult_27x27) or 0            
+
+          mem_512x40_sp_match = re.search(r'mem_512x40_sp\s*:\s*(\d+)', line)
+          if mem_512x40_sp_match is not None:
+            mem_512x40_sp = mem_512x40_sp_match.group(1)
+            result_dict['mem_512x40_sp'] = float(mem_512x40_sp) or 0
+
+          mem_1024x20_dp_match = re.search(r'mem_1024x20_dp\s*:\s*(\d+)', line)
+          if mem_1024x20_dp_match is not None:
+            mem_1024x20_dp = mem_1024x20_dp_match.group(1)
+            result_dict['mem_1024x20_dp'] = float(mem_1024x20_dp) or 0
+
+          mem_2048x10_dp_match = re.search(r'mem_2048x10_dp\s*:\s*(\d+)', line)
+          if mem_2048x10_dp_match is not None:
+            mem_2048x10_dp = mem_2048x10_dp_match.group(1)
+            result_dict['mem_2048x10_dp'] = float(mem_2048x10_dp) or 0   
+            
           utilization_memory_match = re.search(r'Block Utilization: (\d+\.\d+) Type: memory', line)
           if utilization_memory_match is not None:
             utilization_memory = utilization_memory_match.group(1)
@@ -491,15 +537,15 @@ class GenResults():
             resource_usage_io = resource_usage_io_match.group(1)
             result_dict['resource_usage_io'] = int(resource_usage_io) or 0
 
-          zero_lut_match = re.search(r'(0-LUT)\s*:\s*(\d+)', line)
-          if zero_lut_match is not None:
-            zero_lut = zero_lut_match.group(2)
-            result_dict['0_lut'] = int(zero_lut) or 0
-
-          six_lut_match = re.search(r'(6-LUT)\s*:\s*(\d+)', line)
-          if six_lut_match is not None:
-            six_lut = six_lut_match.group(2)
-            result_dict['6_lut'] = int(six_lut) or 0        
+          #zero_lut_match = re.search(r'(0-LUT)\s*:\s*(\d+)', line)
+          #if zero_lut_match is not None:
+          #  zero_lut = zero_lut_match.group(2)
+          #  result_dict['0_lut'] = int(zero_lut) or 0
+#
+          #six_lut_match = re.search(r'(6-LUT)\s*:\s*(\d+)', line)
+          #if six_lut_match is not None:
+          #  six_lut = six_lut_match.group(2)
+          #  result_dict['6_lut'] = int(six_lut) or 0        
 
           block_input_match = re.search(r'(\.input)\s*:\s*(\d+)', line)
           if block_input_match is not None:
@@ -509,29 +555,24 @@ class GenResults():
           block_output_match = re.search(r'(\.output)\s*:\s*(\d+)', line)
           if block_output_match is not None:
             block_output = block_output_match.group(2)
-            result_dict['block_output'] = int(block_output) or 0
-
-          block_latch_match = re.search(r'(\.latch)\s*:\s*(\d+)', line)
-          if block_latch_match is not None:
-            block_latch = block_latch_match.group(2)
-            result_dict['block_latch'] = int(block_latch) or 0            
+            result_dict['block_output'] = int(block_output) or 0          
 
           dual_port_ram_match = re.search(r'(dual_port_ram)\s*:\s*(\d+)', line)
           if dual_port_ram_match is not None:
             dual_port_ram = dual_port_ram_match.group(2)
-            result_dict['dual_port_ram'] = int(dual_port_ram) or 0
+            result_dict['dual_port_ram_before_vpr'] = int(dual_port_ram) or 0
 
           single_port_ram_match = re.search(r'(single_port_ram)\s*:\s*(\d+)', line)
           if single_port_ram_match is not None:
             single_port_ram = single_port_ram_match.group(2)
-            result_dict['single_port_ram'] = int(single_port_ram) or 0          
+            result_dict['single_port_ram_before_vpr'] = int(single_port_ram) or 0          
 
           resource_usage_clb_match = re.search(r'(\d+)\s+blocks of type: clb', line)
           if resource_usage_clb_match is not None and ("Netlist" in prev_line):
             resource_usage_clb = resource_usage_clb_match.group(1)
             result_dict['resource_usage_clb'] = int(resource_usage_clb) or 0
 
-          resource_usage_dsp_match = re.search(r'(\d+)\s+blocks of type: (dsp_top|mult_27)', line)
+          resource_usage_dsp_match = re.search(r'(\d+)\s+blocks of type: (dsp_top|mult_\d+)', line)
           #if result_dict['arch'] == "stratix":
           #if result_dict['arch'].startswith("k6FracN10LB"):
           #  resource_usage_dsp_match = re.search(r'(\d+)\s+blocks of type: dsp_top', line)
@@ -540,8 +581,7 @@ class GenResults():
           #  resource_usage_dsp_match = re.search(r'(\d+)\s+blocks of type: mult_27', line)
           #else:
           #  print("Unsupported dsp architecture")
-          #  raise SystemExit(0)
-
+          #  raise SystemExit(0)          
           if resource_usage_dsp_match is not None and ("Netlist" in prev_line):
             resource_usage_dsp = resource_usage_dsp_match.group(1)
             result_dict['resource_usage_dsp'] = int(resource_usage_dsp) or 0
@@ -551,9 +591,9 @@ class GenResults():
             resource_usage_memory = resource_usage_memory_match.group(1)
             result_dict['resource_usage_memory'] = int(resource_usage_memory) or 0
 
-          resource_usage_memory_compute_match = re.search(r'mem_128x128_compute.*\s*:\s*(\d*)', line)
+          resource_usage_memory_compute_match = re.search(r'(mem_\d+x\d+)\s*:\s*(\d+)', line)
           if resource_usage_memory_compute_match is not None and pb_types_usage is True:
-            resource_usage_memory_compute += int(resource_usage_memory_compute_match.group(1))
+            resource_usage_memory_compute += int(resource_usage_memory_compute_match.group(2))
             result_dict['resource_usage_memory_compute'] = int(resource_usage_memory_compute) or 0
 
           device_io_match = re.search(r'(\d+)\s+blocks of type: io', line)
@@ -589,27 +629,32 @@ class GenResults():
           resource_usage_lut3_match = re.search(r'lut3\s*:\s*(\d*)', line)
           if resource_usage_lut3_match is not None and pb_types_usage is True:
             resource_usage_lut3 = int(resource_usage_lut3_match.group(1))
-            result_dict['lut3'] = int(resource_usage_lut3) or 0
+            result_dict['lut3'] = int(resource_usage_lut3) or  "Not found"
 
           resource_usage_lut4_match = re.search(r'lut3\s*:\s*(\d*)', line)
           if resource_usage_lut4_match is not None and pb_types_usage is True:
             resource_usage_lut4 = int(resource_usage_lut4_match.group(1))
-            result_dict['lut4'] = int(resource_usage_lut4) or 0
+            result_dict['lut4'] = int(resource_usage_lut4) or  "Not found"
 
           resource_usage_lut5_match = re.search(r'lut3\s*:\s*(\d*)', line)
           if resource_usage_lut5_match is not None and pb_types_usage is True:
             resource_usage_lut5 = int(resource_usage_lut5_match.group(1))
-            result_dict['lut5'] = int(resource_usage_lut5) or 0
+            result_dict['lut5'] = int(resource_usage_lut5) or  "Not found"
 
           resource_usage_lut6_match = re.search(r'lut3\s*:\s*(\d*)', line)
           if resource_usage_lut6_match is not None and pb_types_usage is True:
             resource_usage_lut6 = int(resource_usage_lut6_match.group(1))
-            result_dict['lut6'] = int(resource_usage_lut6) or 0
+            result_dict['lut6'] = int(resource_usage_lut6) or  "Not found"
 
           resource_usage_ff_match = re.search(r'ff\s*:\s*(\d*)', line)
           if resource_usage_ff_match is not None and pb_types_usage is True:
             resource_usage_ff += int(resource_usage_ff_match.group(1))
-            result_dict['ffs'] = resource_usage_ff or 0
+            result_dict['ffs'] = int(resource_usage_ff) or 0
+        
+          memory_slice_match = re.search(r'memory_slice\s*:\s*(\d*)', line)
+          if memory_slice_match is not None and pb_types_usage is True:
+            num_memory_slice += int(memory_slice_match.group(1))
+            result_dict['memory_slice'] = int(num_memory_slice) or 0
 
           max_fanout_match = re.search(r'Max Fanout\s*:\s*(.*)', line)
           if max_fanout_match is not None and ("Avg Fanout" in prev_line):
@@ -706,6 +751,8 @@ class GenResults():
           result_dict['dsp_to_clb_ratio'] = result_dict['resource_usage_dsp'] / result_dict['resource_usage_clb']
           result_dict['memory_to_clb_ratio'] = result_dict['resource_usage_memory'] / result_dict['resource_usage_clb']
           result_dict['adder_to_lut_ratio'] = result_dict['single_bit_adders'] / result_dict['luts']
+          result_dict['dsp_to_lut_ratio'] = result_dict['resource_usage_dsp'] / result_dict['luts']
+          result_dict['memory_to_lut_ratio'] = result_dict['resource_usage_memory'] / result_dict['luts']
 
         result_dict['largest_pct_of_total_channels'] = largest_pct_of_total_channels
         result_dict['min_util_for_largest_pct_of_total_channels'] = min_util_for_largest_pct_of_total_channels  
