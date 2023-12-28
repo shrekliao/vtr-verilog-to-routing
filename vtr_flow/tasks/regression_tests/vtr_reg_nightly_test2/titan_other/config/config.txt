@@ -41,13 +41,13 @@ circuit_list_add=murax_stratixiv_arch_timing.blif
 arch_list_add=stratixiv_arch.timing.xml
 
 # Parse info and how to parse
-parse_file=vpr_titan.txt
+parse_file=.txt
 
 # How to parse QoR info
-qor_parse_file=qor_vpr_titan.txt
+qor_parse_file=qor_.txt
 
 # Pass requirements
-pass_requirements_file=pass_requirements_vpr_titan.txt
+pass_requirements_file=pass_requirements_.txt
 
 script_params=-starting_stage vpr --route_chan_width 300 --max_router_iterations 400 --router_lookahead map
 

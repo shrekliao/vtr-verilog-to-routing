@@ -93,6 +93,7 @@ class GenResults():
                     "mem_512x40_sp", \
                     "mem_2048x10_dp", \
                     "mem_1024x20_dp", \
+                    "total_memory_usage", \
                     "memory_slice", \
                     "ff_to_lut_ratio", \
                     "dsp_to_clb_ratio", \
@@ -521,7 +522,11 @@ class GenResults():
           if mem_2048x10_dp_match is not None:
             mem_2048x10_dp = mem_2048x10_dp_match.group(1)
             result_dict['mem_2048x10_dp'] = float(mem_2048x10_dp) or 0   
-            
+
+          if mem_2048x10_dp_match or mem_1024x20_dp_match or mem_512x40_sp_match is not None:
+            total_memory_usage = mem_512x40_sp*512*40+mem_1024x20_dp*1024*20+mem_2048x10_dp*2048*10
+            result_dict['total_memory_usage'] = float(total_memory_usage) or 0   
+
           utilization_memory_match = re.search(r'Block Utilization: (\d+\.\d+) Type: memory', line)
           if utilization_memory_match is not None:
             utilization_memory = utilization_memory_match.group(1)

@@ -12,6 +12,7 @@ import textwrap
 import shutil
 from datetime import datetime
 from contextlib import redirect_stdout
+# import os
 
 # pylint: disable=wrong-import-position
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -191,14 +192,13 @@ def parse_tasks(configs, jobs, alt_tasks_dir=None):
     Parse the selection of tasks specified in configs and associated jobs
     """
     for config in configs:
-        config_jobs = [job for job in jobs if job.task_name() == config.task_name]
+        config_jobs = [job for job in jobs if job.task_name() == config.task_name] # match the task name with current config
         parse_task(config, config_jobs, alt_tasks_dir=alt_tasks_dir)
 
 
 def parse_task(config, config_jobs, flow_metrics_basename=FIRST_PARSE_FILE, alt_tasks_dir=None):
     """
     Parse a single task run.
-
     This generates a file parse_results.txt in the task's working directory,
     which is an amalgam of the parse_rests.txt's produced by each job (flow invocation)
     """
@@ -207,28 +207,49 @@ def parse_task(config, config_jobs, flow_metrics_basename=FIRST_PARSE_FILE, alt_
     # Record max widths for pretty printing
     max_arch_len = len("architecture")
     max_circuit_len = len("circuit")
+    #for job in config_jobs:
+    #    work_dir = job.work_dir(get_latest_run_dir(find_task_dir(config, alt_tasks_dir)))
+    #    job.parse_command()[0] = work_dir
+    #    #job.second_parse_command()[0] = work_dir
+    #    job.qor_parse_command()[0] = work_dir
+    #    if job.parse_command():
+    #        parse_filepath = str(PurePath(work_dir) / flow_metrics_basename)
+    #        with open(parse_filepath, "w+") as parse_file:
+    #            with redirect_stdout(parse_file):
+    #                parse_vtr_flow(job.parse_command())
+    #    if job.second_parse_command():
+    #        parse_filepath = str(PurePath(work_dir) / SECOND_PARSE_FILE)
+    #        with open(parse_filepath, "w+") as parse_file:
+    #            with redirect_stdout(parse_file):
+    #                parse_vtr_flow(job.second_parse_command())
+    #    if job.qor_parse_command():
+    #        parse_filepath = str(PurePath(work_dir) / QOR_PARSE_FILE)
+    #        with open(parse_filepath, "w+") as parse_file:
+    #            with redirect_stdout(parse_file):
+    #                parse_vtr_flow(job.qor_parse_command())
+    #    max_arch_len = max(max_arch_len, len(job.arch()))
+    #    max_circuit_len = max(max_circuit_len, len(job.circuit()))
     for job in config_jobs:
         work_dir = job.work_dir(get_latest_run_dir(find_task_dir(config, alt_tasks_dir)))
-        job.parse_command()[0] = work_dir
-        # job.second_parse_command()[0] = work_dir
-        job.qor_parse_command()[0] = work_dir
-        if job.parse_command():
-            parse_filepath = str(PurePath(work_dir) / flow_metrics_basename)
-            with open(parse_filepath, "w+") as parse_file:
-                with redirect_stdout(parse_file):
-                    parse_vtr_flow(job.parse_command())
-        if job.second_parse_command():
-            parse_filepath = str(PurePath(work_dir) / SECOND_PARSE_FILE)
-            with open(parse_filepath, "w+") as parse_file:
-                with redirect_stdout(parse_file):
-                    parse_vtr_flow(job.second_parse_command())
-        if job.qor_parse_command():
-            parse_filepath = str(PurePath(work_dir) / QOR_PARSE_FILE)
-            with open(parse_filepath, "w+") as parse_file:
-                with redirect_stdout(parse_file):
-                    parse_vtr_flow(job.qor_parse_command())
+        #print ("work_dir=", work_dir)
+
+        parse_commands = [job.parse_command(), job.qor_parse_command()] #job.second_parse_command() removed
+        parse_files = [flow_metrics_basename, SECOND_PARSE_FILE, QOR_PARSE_FILE]
+        for i in range(2):
+            if parse_commands[i] is not None:
+                parse_commands[i][0] = work_dir
+                parse_filepath = str(PurePath(work_dir) / parse_files[i])
+                print(f"Opening file: {parse_filepath}")
+                with open(parse_filepath, "w+") as parse_file:
+                    with redirect_stdout(parse_file):
+                        parse_vtr_flow(parse_commands[i])
+        
+        # Add debugging output to check if the files are being created
+        print(f"Files created for job {job} in directory {work_dir}")
+
         max_arch_len = max(max_arch_len, len(job.arch()))
         max_circuit_len = max(max_circuit_len, len(job.circuit()))
+
     parse_files(config_jobs, run_dir, flow_metrics_basename)
 
     if config.second_parse_file:
@@ -240,15 +261,13 @@ def parse_task(config, config_jobs, flow_metrics_basename=FIRST_PARSE_FILE, alt_
 
 def parse_files(config_jobs, run_dir, flow_metrics_basename=FIRST_PARSE_FILE):
     """Parse the result files from the give jobs"""
+    # Below constructs the path to the output file where the parsed results will be written.
     task_parse_results_filepath = str(PurePath(run_dir) / flow_metrics_basename)
     with open(task_parse_results_filepath, "w") as out_f:
 
-        # Start the header
-
+        # Start the header, whether the header line has been written to the output file.
         header = True
-        for job in config_jobs:
-            # Open the job results file
-            #
+        for job in config_jobs:# go through each job in config_jobs
             # The job results file is basically the same format,
             # but excludes the architecture and circuit fields,
             # which we prefix to each line of the task result file
@@ -256,9 +275,9 @@ def parse_files(config_jobs, run_dir, flow_metrics_basename=FIRST_PARSE_FILE):
             if job_parse_results_filepath.exists():
                 with open(job_parse_results_filepath) as in_f:
                     lines = in_f.readlines()
-                    assert len(lines) == 2
+                    assert len(lines) == 2 #result file should content only 2 lines
                     if header:
-                        # First line is the header
+                        # First line is the header, if there's no header yet
                         print(lines[0], file=out_f, end="")
                         header = False
                     # Second line is the data

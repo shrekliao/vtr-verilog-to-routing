@@ -490,21 +490,21 @@ def get_next_run_dir(base_dir):
     return str(PurePath(base_dir) / run_dir_name(get_next_run_number(base_dir)))
 
 
-def find_task_dir(config, alt_tasks_dir=None):
+def find_task_dir(config, alt_tasks_dir=None): # default alt_tasks_dir=None
     """
     Finds the task directory.
-
     Returns the parent of the config directory, or if specified,
     a directory with the task's name in an alternate location
     """
     task_dir = None
 
     if alt_tasks_dir is None:
-        task_dir = Path(config.config_dir).parent
+    #If alt_tasks_dir is not provided, the function uses the parent of the config directory as the task directory.
+        task_dir = Path(config.config_dir).parent #constructs the path to the parent of the config directory.
     else:
         task_dir = Path(alt_tasks_dir) / config.task_name
         task_dir.mkdir(parents=True, exist_ok=True)
-    assert task_dir.is_dir
+    assert task_dir.is_dir #checks if task_dir is a directory.
 
     return str(task_dir)
 
@@ -551,11 +551,10 @@ def get_latest_run_number(base_dir):
     """
     Returns the highest run number of all run directories with in base_dir
     """
-    run_number = 1
-    run_dir = Path(base_dir) / run_dir_name(run_number)
-
+    run_number = 1 #initial
+    run_dir = Path(base_dir) / run_dir_name(run_number) 
     if not run_dir.exists():
-        # No existing run directories
+        # No existing run directories, if run001 exits, then do run002
         return None
 
     while run_dir.exists():
@@ -571,4 +570,4 @@ def run_dir_name(run_num):
     """
     Returns the formatted directory name for a specific run number
     """
-    return "run{:03d}".format(run_num)
+    return "run{:03d}".format(run_num) #return a 3 digit number ex: run005 or run123
