@@ -211,15 +211,16 @@ class GenResults():
   #--------------------------
   def find_file(self, dirname, run_num, file_to_find):
     found = False
+    #search_path = os.path.join(dirname, run_num, "latest")  # Adding "latest" to the path
     for root, dirs, files in os.walk(os.path.realpath(dirname + "/" + run_num), topdown=True):
-      #print(root, dirs, files)
+      print(root, dirs, files)
       for filename in files:
-        #print(filename)
+        print(filename)
         match = re.match(file_to_find, filename)
         if match is not None:
           found = True
           found_filename = os.path.join(root,filename)
-          #print("Found {} for {}: {}".format(file_to_find, dirname, found_filename))
+          print("Found {} for {}: {}".format(file_to_find, dirname, found_filename))
           return found_filename
     if not found:
       print("Could not find {} for {}".format(file_to_find, dirname))
