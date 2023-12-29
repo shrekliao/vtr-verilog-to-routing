@@ -245,29 +245,30 @@ def vtr_command_argparser(prog=None):
 
 def vtr_command_main(arg_list, prog=None) -> int:
     """Run the vtr tasks given and the tasks in the lists given"""
-    # Load the arguments, parsing the arguments provided in arg_list
+    # Load the arguments
     args = vtr_command_argparser(prog).parse_args(arg_list)
 
     # Don't run if parsing or handling golden results
-    # Below sets the args.run flag to False if any of the following flags are True
     args.run = not (args.parse or args.create_golden or args.check_golden or args.calc_geomean)
 
-    # Always parse if running: if the tasks are set to run, they should also be parsed.
+    # Always parse if running
     if args.run:
         args.parse = True
 
-    num_failed = -1 # initial
+    num_failed = -1
     try:
         task_names = args.task
 
-        for list_file in args.list_file: #load task names
+        for list_file in args.list_file:
             task_names += load_list_file(list_file)
 
-        config_files = [find_task_config_file(task_name) for task_name in task_names] #load configs
+        #config_files = [find_task_config_file(task_name) for task_name in task_names]
         configs = []
         common_task_prefix = ""  # common task prefix to shorten task names
-        for config_file in config_files:
-            config = load_task_config(config_file)
+        #for config_file in config_files:
+        for task_name in task_names:
+            config_file = find_task_config_file(task_name)
+            config = load_task_config(config_file, task_name)
             configs += [config]
             if not common_task_prefix:
                 common_task_prefix = config.task_name
@@ -278,7 +279,7 @@ def vtr_command_main(arg_list, prog=None) -> int:
                 common_task_prefix = common_task_prefix[match.a : match.a + match.size]
         if args.short_task_names:
             configs = shorten_task_names(configs, common_task_prefix)
-        num_failed = run_tasks(args, configs) #run tasks
+        num_failed = run_tasks(args, configs)
 
     except CommandError as exception:
         print("Error: {msg}".format(msg=exception.msg))
@@ -482,6 +483,7 @@ def run_vtr_flow_process(queue, run_dirs, job, script) -> None:
     This is the function called by multiprocessing.Pool.
     It runs the VTR flow and alerts the caller through the queue if the flow failed.
     """
+    print("task_run_dir={}".format(run_dirs[job.task_name()].strip()))
     work_dir = job.work_dir(run_dirs[job.task_name()])
     Path(work_dir).mkdir(parents=True, exist_ok=True)
     out = None

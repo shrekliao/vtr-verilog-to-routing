@@ -183,7 +183,7 @@ class Job:
 # pylint: enable=too-many-instance-attributes
 
 
-def load_task_config(config_file) -> TaskConfig:
+def load_task_config(config_file, task_name) -> TaskConfig:
     """
     Load task config information
     """
@@ -265,7 +265,8 @@ def load_task_config(config_file) -> TaskConfig:
     # Useful meta-data about the config
     config_dir = str(Path(config_file).parent)
     key_values["config_dir"] = config_dir
-    key_values["task_name"] = Path(config_dir).parent.name
+    #key_values["task_name"] = Path(config_dir).parent.name
+    key_values["task_name"] = task_name
 
     # Create the task config object
     return TaskConfig(**key_values)
