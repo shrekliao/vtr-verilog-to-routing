@@ -1,0 +1,11 @@
+# LUT-K
+K = {4, 6}
+# N Luts in a ALM
+N = {10}
+# Tile: 4x4?
+L = {4}
+# Switch box flexibility
+fs = { 1, 2, 3}
+# Connection box flexibility
+fcin = { 0.15}
+fcout = { 0.1}

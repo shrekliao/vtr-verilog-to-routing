@@ -3,7 +3,7 @@ import re
 import argparse
 import csv
 import subprocess
-
+from collections import defaultdict
 
 
 # ###############################################################
@@ -93,6 +93,7 @@ class GenResults():
                     "mem_512x40_sp", \
                     "mem_2048x10_dp", \
                     "mem_1024x20_dp", \
+                    "total_memory_usage", \
                     "memory_slice", \
                     "ff_to_lut_ratio", \
                     "dsp_to_clb_ratio", \
@@ -139,7 +140,9 @@ class GenResults():
                     "routing_histogram_03_04_pct",  \
                     "routing_histogram_02_03_pct",  \
                     "routing_histogram_01_02_pct",  \
-                    "routing_histogram_00_01_pct"]
+                    "routing_histogram_00_01_pct", \
+                    "Max number of sw in SB", \
+                    "Max number of sw in CB"]
 
     self.components_of_interest = ["routing", "clock", "clb", "dsp", "memory"]
     self.power_types = ["abs_total_power", \
@@ -187,7 +190,7 @@ class GenResults():
                         default="",
                         help="Tag for these results")
     args = parser.parse_args()
-    print("infile = "+ args.infile)
+    print("infile = "+args.infile)
     print("outfile = "+args.outfile)
     self.infile = args.infile
     self.outfile = args.outfile
@@ -210,11 +213,13 @@ class GenResults():
   #--------------------------
   def find_file(self, dirname, run_num, file_to_find):
     found = False
+    #search_path = os.path.join(dirname, run_num, "latest")  # Adding "latest" to the path
     for root, dirs, files in os.walk(os.path.realpath(dirname + "/" + run_num), topdown=True):
       #print(root, dirs, files)
       for filename in files:
         #print(filename)
         match = re.match(file_to_find, filename)
+        print("match={}",match)
         if match is not None:
           found = True
           found_filename = os.path.join(root,filename)
@@ -249,9 +254,10 @@ class GenResults():
     elif block == "memory":
       return routing_area_memory
     else:
-      print("Unsupported block: {}".format(block))
+      #print("Unsupported block: {}".format(block))
       raise SystemExit(0)
 
+ 
   #--------------------------
   #extract information for each entry in infile
   #--------------------------
@@ -305,6 +311,9 @@ class GenResults():
         resource_usage_ff = 0
         resource_usage_adder = 0
         #resource_usage_memory = 0
+        mem_1024x20_dp = 0
+        mem_2048x10_dp = 0
+        mem_512x40_sp = 0
         resource_usage_memory_compute = 0
         resource_usage_lut = 0
         num_memory_slice = 0
@@ -521,7 +530,11 @@ class GenResults():
           if mem_2048x10_dp_match is not None:
             mem_2048x10_dp = mem_2048x10_dp_match.group(1)
             result_dict['mem_2048x10_dp'] = float(mem_2048x10_dp) or 0   
-            
+
+          if mem_2048x10_dp_match or mem_1024x20_dp_match or mem_512x40_sp_match is not None:
+            total_memory_usage = float(mem_512x40_sp)*512*40 + float(mem_1024x20_dp)*1024*20 + float(mem_2048x10_dp)*2048*10
+            result_dict['total_memory_usage'] = float(total_memory_usage) or 0   
+
           utilization_memory_match = re.search(r'Block Utilization: (\d+\.\d+) Type: memory', line)
           if utilization_memory_match is not None:
             utilization_memory = utilization_memory_match.group(1)

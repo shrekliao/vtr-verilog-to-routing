@@ -1,0 +1,28 @@
+##############################################
+# Configuration file for running experiments
+##############################################
+
+# Path to directory of circuits to use
+circuits_dir=benchmarks/chengchieh_test
+
+# Path to directory of architectures to use
+archs_dir=arch/chengchieh_test
+
+# Add circuits to list to sweep
+circuit_list_add=spree.v
+#circuit_list_add=softmax.v
+#circuit_list_add=reduction_layer.v
+#circuit_list_add=diffeq2.v
+
+# Add architectures to list to sweep
+#arch_list_add=4bit_adder_double_chain_arch.xml
+arch_list_add=k6FracN10LB_mem20K_complexDSP_customSB_22nm.xml
+
+# Parse info and how to parse
+parse_file=vpr_chengchieh.txt
+
+# Pass requirements
+pass_requirements_file=pass_requirements.txt
+
+# VPR parameters
+script_params=-track_memory_usage -crit_path_router_iterations 100 --full_stats on  --write_rr_graph test_feb24.xml

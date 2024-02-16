@@ -4,30 +4,29 @@
 ##############################################
 
 # Path to directory of circuits to use
-circuits_dir=benchmarks/verilog
+circuits_dir=benchmarks/chengchieh_test
 
 # Path to directory of architectures to use
-archs_dir=arch/COFFE_22nm
+archs_dir=arch/chengchieh_test
 
 # Directory containing the verilog includes file(s)
-includes_dir=benchmarks/verilog/koios
+includes_dir=benchmarks/chengchieh_test
 
 # Add circuits to list to sweep
-circuit_list_add=spree.v
-circuit_list_add=diffeq2.v
-circuit_list_add=koios/reduction_layer.v
-circuit_list_add=koios/softmax.v
+#circuit_list_add=shift_register_10bit.v
+#circuit_list_add=adder_5bits.v
+circuit_list_add=shift_register_2bit.v
+circuit_list_add=adder_1bits.v
 
 # Add architectures to list to sweep
-arch_list_add=k6FracN10LB_mem20K_complexDSP_customSB_22nm.xml
-arch_list_add=4bit_adder_double_chain_arch.xml
+arch_list_add=k6_N3_4x4T_40nm.xml
 
 # Add include files to the list.
 # Some benchmarks instantiate hard dsp and memory blocks 
 # This functionality is guarded under the `complex_dsp` and `hard_mem` macros. 
 # The hard_block_include.v file 
 # defines this macros, thereby enabling instantiations of the hard blocks
-include_list_add=hard_block_include.v
+# include_list_add=hard_block_include.v
 
 # Parse info and how to parse
 parse_file=vpr_standard.txt
@@ -39,4 +38,7 @@ qor_parse_file=qor_standard.txt
 pass_requirements_file=pass_requirements.txt
 
 #Script parameters
-script_params=-track_memory_usage -crit_path_router_iterations 100 --route_chan_width 300 --full_stats on
+#script_params=-track_memory_usage -crit_path_router_iterations 100 --route_chan_width 20 --write_rr_graph test_cheng_jan12.xml
+#script_params=-track_memory_usage -crit_path_router_iterations 100 --route_chan_width 10 --write_rr_graph test_cheng_jan12.xml
+#script_params=-track_memory_usage -crit_path_router_iterations 100 --min_route_chan_width_hint 20 --write_rr_graph test_cheng_jan12.xml
+script_params=-track_memory_usage -crit_path_router_iterations 100 --write_rr_graph test_cheng_jan12.xml

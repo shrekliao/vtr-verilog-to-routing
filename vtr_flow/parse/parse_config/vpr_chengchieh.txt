@@ -1,0 +1,16 @@
+#vtr_flow.out
+%include "common/vtr_flow.txt"
+#%include "common/odin.txt"
+#%include "common/parmys.txt"
+#%include "common/abc.txt"
+#%include "common/ace.txt"
+
+#vpr.out
+%include "common/vtr_benchmarks.txt"
+#output.txt
+%include "common/vpr.common.txt"
+
+%include "timing/vpr.pack.txt"
+%include "timing/vpr.place.txt"
+%include "timing/vpr.route_min_chan_width.txt"
+%include "timing/vpr.route_relaxed_chan_width.txt"

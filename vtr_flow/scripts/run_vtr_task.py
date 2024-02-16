@@ -245,13 +245,13 @@ def vtr_command_argparser(prog=None):
 
 def vtr_command_main(arg_list, prog=None) -> int:
     """Run the vtr tasks given and the tasks in the lists given"""
-    # Load the arguments
+    # Load the arguments, parsing the arguments provided in arg_list
     args = vtr_command_argparser(prog).parse_args(arg_list)
 
     # Don't run if parsing or handling golden results
     args.run = not (args.parse or args.create_golden or args.check_golden or args.calc_geomean)
 
-    # Always parse if running
+    # Always parse if running: if the tasks are set to run, they should also be parsed.
     if args.run:
         args.parse = True
 
@@ -259,7 +259,7 @@ def vtr_command_main(arg_list, prog=None) -> int:
     try:
         task_names = args.task
 
-        for list_file in args.list_file:
+        for list_file in args.list_file: #load task names
             task_names += load_list_file(list_file)
 
         #config_files = [find_task_config_file(task_name) for task_name in task_names]
