@@ -93,7 +93,6 @@ class GenResults():
                     "mem_512x40_sp", \
                     "mem_2048x10_dp", \
                     "mem_1024x20_dp", \
-                    "total_memory_usage", \
                     "memory_slice", \
                     "ff_to_lut_ratio", \
                     "dsp_to_clb_ratio", \
@@ -141,8 +140,7 @@ class GenResults():
                     "routing_histogram_02_03_pct",  \
                     "routing_histogram_01_02_pct",  \
                     "routing_histogram_00_01_pct", \
-                    "Max number of sw in SB", \
-                    "Max number of sw in CB"]
+                    "sw1_max_num", "sw1_max_cord","sw2_max_num", "sw2_max_cord"]
 
     self.components_of_interest = ["routing", "clock", "clb", "dsp", "memory"]
     self.power_types = ["abs_total_power", \
@@ -190,7 +188,7 @@ class GenResults():
                         default="",
                         help="Tag for these results")
     args = parser.parse_args()
-    print("infile = "+args.infile)
+    print("infile = "+ args.infile)
     print("outfile = "+args.outfile)
     self.infile = args.infile
     self.outfile = args.outfile
@@ -213,13 +211,11 @@ class GenResults():
   #--------------------------
   def find_file(self, dirname, run_num, file_to_find):
     found = False
-    #search_path = os.path.join(dirname, run_num, "latest")  # Adding "latest" to the path
     for root, dirs, files in os.walk(os.path.realpath(dirname + "/" + run_num), topdown=True):
       #print(root, dirs, files)
       for filename in files:
-        #print(filename)
+        #print("filename:", filename)
         match = re.match(file_to_find, filename)
-        print("match={}",match)
         if match is not None:
           found = True
           found_filename = os.path.join(root,filename)
@@ -254,10 +250,9 @@ class GenResults():
     elif block == "memory":
       return routing_area_memory
     else:
-      #print("Unsupported block: {}".format(block))
+      print("Unsupported block: {}".format(block))
       raise SystemExit(0)
 
- 
   #--------------------------
   #extract information for each entry in infile
   #--------------------------
@@ -280,20 +275,34 @@ class GenResults():
         print("Unable to parse line: " + line)
         continue
       result_dict = {}
-      result_dict['dirname'] = dirname 
-      result_dict['run_num'] = run_num 
+      result_dict['dirname'] = dirname #/mnt/vault0/cliao43/vtr_cc/vtr-verilog-to-routing/vtr_flow/tasks/chengchieh/k6FracN10LB_mem20K_complexDSP_customSB_22nm/spree/
+      result_dict['run_num'] = run_num #run001
 
       #extract experiment info from dirname
-      #info = re.search(r'(baseline|ccb|mantra|comefa)/(.*?)$', dirname)
-      info = re.search(r'(k6FracN10LB_mem20K_complexDSP_customSB_22nm|4bit_adder_double_chain_arch)/(.*?)$', dirname)
-      if info is not None:
-        result_dict['arch'] = info.group(1)
-        result_dict['design'] = info.group(2)
-        print("Extracting info for " + dirname + "/" + run_num)
+      # List all arch_names under dirname
+      arch_names = [d for d in os.listdir(os.path.join(dirname, run_num)) if os.path.isdir(os.path.join(dirname, run_num, d))]
+      # If there's only one arch_name, convert it to a string
+      if len(arch_names) == 1:
+          arch_name = arch_names[0]
+          #print ("arch_name:", arch_name)
+          design_path = os.path.join(dirname, run_num, arch_name)
+          #print ("design_path:", design_path)
+          # Check if the arch_name name matches the pattern
+          design_name = [d for d in os.listdir(design_path) if os.path.isdir(os.path.join(design_path, d))]
+          pattern = r'([^/]*)\.v$'
+          v_folder = next((d for d in design_name if re.search(pattern, d)), None)
+          if v_folder:
+              # If a .v directory is found, extract the directory name
+              folder_name = re.search(pattern, v_folder).group(1)
+              result_dict['arch'] = arch_name
+              result_dict['design'] = folder_name
+              new_full_path = str(design_path + "/" + folder_name+ ".v")
+              #print("Extracting info for " + new_full_path)              
+              #print("Found design folder: " + folder_name)
+          else:
+              print("No .v folder found.")
       else:
-        print("Unable to extract experiment info from " + dirname)
-
-      # print("Extracting info for " + dirname + "/" + run_num)
+          print("More than one arch_name found. Please check the arch_name list.")
 
       #--------------------------
       #extract information from vpr.out
@@ -311,9 +320,6 @@ class GenResults():
         resource_usage_ff = 0
         resource_usage_adder = 0
         #resource_usage_memory = 0
-        mem_1024x20_dp = 0
-        mem_2048x10_dp = 0
-        mem_512x40_sp = 0
         resource_usage_memory_compute = 0
         resource_usage_lut = 0
         num_memory_slice = 0
@@ -530,11 +536,7 @@ class GenResults():
           if mem_2048x10_dp_match is not None:
             mem_2048x10_dp = mem_2048x10_dp_match.group(1)
             result_dict['mem_2048x10_dp'] = float(mem_2048x10_dp) or 0   
-
-          if mem_2048x10_dp_match or mem_1024x20_dp_match or mem_512x40_sp_match is not None:
-            total_memory_usage = float(mem_512x40_sp)*512*40 + float(mem_1024x20_dp)*1024*20 + float(mem_2048x10_dp)*2048*10
-            result_dict['total_memory_usage'] = float(total_memory_usage) or 0   
-
+            
           utilization_memory_match = re.search(r'Block Utilization: (\d+\.\d+) Type: memory', line)
           if utilization_memory_match is not None:
             utilization_memory = utilization_memory_match.group(1)
@@ -849,7 +851,63 @@ class GenResults():
           #result_dict['min_channel_width'] = row['min_chan_width']
           #result_dict['critical_path'] = row['critical_path_delay']
         parse_results_filehandle.close()
-          
+
+      #---------------------------------------------------
+      # extract info from route file
+      #---------------------------------------------------
+      #def parse_switch(file_path, route_fname):
+      # Append the desired subdirectories
+      print("file_path:",new_full_path)
+      print("route_fname:",folder_name)
+      new_subdirectories = f"common/{folder_name}.route"
+      new_path = os.path.join(new_full_path, new_subdirectories)
+      #print ("new_path:",new_path)
+
+      if os.path.isfile(new_path):
+          #print("Route file found.")
+          with open(new_path, 'r') as file:
+              lines = file.readlines()
+
+          coord_counts = defaultdict(lambda: defaultdict(int))
+          current_coord = (0, 0, 0)
+
+          for i in range(len(lines)-1):
+              line = lines[i]
+              next_line = lines[i+1]
+
+              # Parse coordinates and switch value from the current line
+              coords = re.findall(r'\((-?\d+,-?\d+,-?\d+)\)', line)
+              coords = [tuple(map(int, coord.split(','))) for coord in coords]
+              switch_match = re.search(r'Switch: (\d+)', line)
+
+              if switch_match is not None:
+                  switch = int(switch_match.group(1))
+
+                  if switch in [1, 2]:
+                      # Parse coordinates from the next line
+                      next_coords = re.findall(r'\((-?\d+,-?\d+,-?\d+)\)', next_line)
+                      next_coords = [tuple(map(int, coord.split(','))) for coord in next_coords]
+
+                      if next_coords:
+                          # Find the nearest coordinate to the current one
+                          nearest_coord = min(next_coords, key=lambda coord: sum(abs(a-b) for a, b in zip(coord[-2:], current_coord[-2:])))
+
+                          # Update the count and current coordinate
+                          coord_counts[switch][nearest_coord[-2:]] += 1
+                          current_coord = nearest_coord
+
+          for switch in [1, 2]:
+              max_count_coord = max(coord_counts[switch], key=coord_counts[switch].get)
+              if switch == 1:                  
+                  result_dict['sw1_max_cord'] = max_count_coord
+                  result_dict['sw1_max_num'] = coord_counts[switch][max_count_coord]
+              else:
+                  result_dict['sw2_max_cord'] = max_count_coord
+                  result_dict['sw2_max_num'] = coord_counts[switch][max_count_coord]
+
+      else:
+          print("Route file not found.") 
+
       #--------------------------
       #identify whether this is ml or non-ml design
       #--------------------------
@@ -864,7 +922,6 @@ class GenResults():
       config_fh.close()  
 
       result_dict["tag"] = self.tag
-
 
       #--------------------------
       # additional logic for 06-07 bucket in the routing util histogram
@@ -983,16 +1040,14 @@ class GenResults():
       ## disabling power result collection ##         result_dict["storage_ram"+"_pct_static_power"]   = result_dict["storage_ram"+"_abs_static_power"] / absolute_static_power_of_circuit
 
       ## disabling power result collection ##   power_results_filehandle.close()
-
+      """
       #----------------------------
       #clean up the directory
       #----------------------------
-      if result_dict['pre_vpr_blif_found'] == "No" \
-        or result_dict['vpr_results_found'] == "No" \
-        or result_dict['parse_results_found'] == "No":
+      if result_dict['pre_vpr_blif_found'] == "No" or result_dict['vpr_results_found'] == "No" or result_dict['parse_results_found'] == "No":
         print("One of the log files required was not found")
       else:
-        print("Parsing complete. Deleting logs/temp files")
+        #print("Parsing complete. Deleting logs/temp files")
         #Delete temp files except the 3 we need
         os.system("rm -rf " + dirname +"/" + run_num + "/*/*/*/*odin.blif")
         os.system("rm -rf " + dirname +"/" + run_num + "/*/*/*/*abc.blif")
@@ -1000,7 +1055,7 @@ class GenResults():
         os.system("rm -rf " + dirname +"/" + run_num + "/*/*/*/*.place")
         os.system("rm -rf " + dirname +"/" + run_num + "/*/*/*/*.route")
         os.system("rm -rf " + dirname +"/" + run_num + "/*/*/*/*.post_routing")
-
+      """
       #append the current results to the main result list
       self.result_list.append(result_dict)
   

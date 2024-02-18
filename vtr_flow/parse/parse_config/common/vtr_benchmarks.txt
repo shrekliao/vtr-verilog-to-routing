@@ -1,6 +1,38 @@
 #VTR benchmark packing metrics
-num_clb;vpr.out;Netlist clb blocks:\s*(\d+)
-num_io;vpr.out;Netlist inputs pins:\s*(\d+)
-num_memories;vpr.out;Netlist memory blocks:\s*(\d+)
-num_mult;vpr.out;Netlist mult_36 blocks:\s*(\d+)
-6-LUT;vpr.out;    6-LUT          :     (.*);none
+
+#Device Utilization:
+Device Utilization;vpr.out;Device Utilization:\s*(\d+\.\d+);none
+IO Block Utilization;vpr.out;\s*Block Utilization:\s*(\d+\.\d+) Logical Block: io;none
+CLB Block Utilization;vpr.out;\s*Block Utilization:\s*(\d+\.\d+) Logical Block: clb;none
+MULT Block Utilization;vpr.out;\s*Block Utilization:\s*(\d+\.\d+) Logical Block: mult;none
+DSP Block Utilization;vpr.out;\s*Block Utilization:\s*(\d+\.\d+) Logical Block: dsp;none
+MEM Block Utilization;vpr.out;\s*Block Utilization:\s*(\d+\.\d+) Logical Block: mem;none
+
+#Circuit Statistics:
+6-LUT;vpr.out;\s*6-LUT\s*:\s*(\d+);none
+
+#Cluster level netlist and block usage statistics:
+Netlist clb blocks;vpr.out;Netlist clb blocks:\s*(\d+)
+Netlist inputs pins;vpr.out;Netlist inputs pins:\s*(\d+)
+Netlist memory blocks;vpr.out;Netlist memory blocks:\s*(\d+)
+#....
+num_mult;vpr.out;Netlist mult_36 blocks:\s*(\d+);none
+
+#Pb types usage: (not accumulate)
+IO;vpr.out;\s*io\s*:\s*(\d+);none
+INPAD;vpr.out;\s*inpad\s*:\s*(\d+);none
+OUTPAD;vpr.out;\s*outpad\s*:\s*(\d+);none
+CLB;vpr.out;\s*clb\s*:\s*(\d+);none
+FLE;vpr.out;\s*fle\s*:\s*(\d+);none
+BLE5;vpr.out;\s*ble5\s*:\s*(\d+);none
+BLE6;vpr.out;\s*ble6\s*:\s*(\d+);none
+mult_27x27;vpr.out;\s*mult_27x27\s*:\s*(\d+);none
+mult_512x40_sp;vpr.out;\s*mult_512x40_sp\s*:\s*(\d+);none
+mult_1024x20_sp;vpr.out;\s*mult_1024x20_sp\s*:\s*(\d+);none
+mult_1024x20_dp;vpr.out;\s*mult_1024x20_dp\s*:\s*(\d+);none
+two_mult_18x19;vpr.out;\s*two_mult_18x19\s*:\s*(\d+);none
+
+
+Critical_path_delay;vpr.out;Final critical path delay \(least slack\):\s*(\d+\.\d+)\s*ns
+#Invalid format?
+#Max Frequency:vpr.out;Final geomean non-virtual intra-domain period:\s*.*\s*ns \((\d+\.\d+) MHz\)

@@ -16,7 +16,7 @@ log_file_string = ", ".join(log_file)
 log_file_path = os.path.join(current_directory, log_file_string)
 #need to find the one end with the largest number
 
-def parse_script(file_path):
+def parse_switch(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
 
@@ -93,7 +93,7 @@ with open(log_file_path, "r") as log_file:
             new_subdirectories = f"{arch_folder}.xml/{bench_folder}.v/common/{bench_folder}.route"
             new_path = os.path.join(common_part, new_subdirectories)
             #print ("new_path:", new_path)
-            parse_script(new_path)
+            parse_switch(new_path)
 
             # Add the new path to the list
             new_paths.append(new_path)   

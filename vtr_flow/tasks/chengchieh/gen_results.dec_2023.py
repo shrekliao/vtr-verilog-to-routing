@@ -281,13 +281,12 @@ class GenResults():
       #info = re.search(r'(baseline|ccb|mantra|comefa)/(.*?)$', dirname)
       info = re.search(r'(k6FracN10LB_mem20K_complexDSP_customSB_22nm|4bit_adder_double_chain_arch)/(.*?)$', dirname)
       if info is not None:
+        print("info:", info)
         result_dict['arch'] = info.group(1)
         result_dict['design'] = info.group(2)
         print("Extracting info for " + dirname + "/" + run_num)
       else:
         print("Unable to extract experiment info from " + dirname)
-
-      # print("Extracting info for " + dirname + "/" + run_num)
 
       #--------------------------
       #extract information from vpr.out
@@ -974,12 +973,10 @@ class GenResults():
       #----------------------------
       #clean up the directory
       #----------------------------
-      if result_dict['pre_vpr_blif_found'] == "No" \
-        or result_dict['vpr_results_found'] == "No" \
-        or result_dict['parse_results_found'] == "No":
+      if result_dict['pre_vpr_blif_found'] == "No" or result_dict['vpr_results_found'] == "No" or result_dict['parse_results_found'] == "No":
         print("One of the log files required was not found")
       else:
-        print("Parsing complete. Deleting logs/temp files")
+        #print("Parsing complete. Deleting logs/temp files")
         #Delete temp files except the 3 we need
         os.system("rm -rf " + dirname +"/" + run_num + "/*/*/*/*odin.blif")
         os.system("rm -rf " + dirname +"/" + run_num + "/*/*/*/*abc.blif")
