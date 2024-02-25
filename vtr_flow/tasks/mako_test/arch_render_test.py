@@ -3,7 +3,9 @@ from mako.template import Template
 from textwrap import dedent
 import os
 import re
+import ast
 from itertools import product
+import logging  # For better error reporting
 
 def cmd_line_args():
     parser = argparse.ArgumentParser()
@@ -63,12 +65,24 @@ def main():
     with open(args.para_inps, "r") as f:
         for line in f:
             line = line.strip()
-            if not line.startswith("#"):
-                match = re.search(r'(\w+)\s*=\s*\{', line)
-                if match is not None:
-                    list_name = match.group(1)
-                    list_values = [float(val) for val in re.findall(r'[\d\.]+', line)]
-                    values[list_name] = list_values
+            if "#" in line or not line:  # Skip commented lines
+                continue
+            try:
+                # Handle both tuples and single variables
+                list_names, list_values = line.split("=")
+                list_names = re.findall(r'\b\w+\b', list_names)
+                list_values = ast.literal_eval(list_values.strip())
+
+                # If there's only one name, assign the values directly
+                if len(list_names) == 1:
+                    values[list_names[0]] = list_values
+                else:
+                    # If there are multiple names, assign each value tuple to the names
+                    for val_tuple in list_values:
+                        for name, val in zip(list_names, val_tuple):
+                            values[name] = [val]
+            except ValueError:
+                logging.warning(f"Error: Malformed line in input file: {line}")
 
     # Generate all combinations of values
     combinations = list(product(*values.values()))
@@ -77,6 +91,7 @@ def main():
     for i, combination in enumerate(combinations):
         values_combination = dict(zip(values.keys(), combination))
         render_template_file(args.infile, args.outfile, values_combination)
+
 
 if __name__ == "__main__":
     main()

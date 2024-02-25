@@ -1,10 +1,24 @@
+////////////////////////////////////////////////////////////////////////////////
+// THIS FILE WAS AUTOMATICALLY GENERATED FROM arch_template.xml
+// DO NOT EDIT
+////////////////////////////////////////////////////////////////////////////////
+
 <!-- 
   Architecture with no fracturable LUTs
 
   - 40 nm technology
-  - General purpose logic block: 
-    K = ${int(K)}, N = ${int(N)}
-  - Routing architecture: L = ${int(L)}, fc_in = ${fcin}, Fc_out = ${fcout}, fs = ${int(fs)}
+    Parameters
+    Parameter |   Value   | Definition
+    __________|___________|______________________________
+    N         | 10| Number of ALMs per cluster(LAB)
+    L         | 4| Wire segment length
+    I         | 60| Number of cluster inputs
+    O         | 40| Number of cluster outputs
+    K         | 6| LUT size
+    Fs        |3| Switch block flexibility (3 is commonly used for best routibility)
+    Fcin      |   0.15| Cluster input flexibility  (connection switches utilization) 
+    Fcout     |  0.1| Cluster output flexibility 
+    Fclocal   |      0.5 | Local input crossbar population
 
   Details on Modelling:
 
@@ -35,7 +49,7 @@
         <input name="outpad" num_pins="1"/>
         <output name="inpad" num_pins="1"/>
         <clock name="clock" num_pins="1"/>
-        <fc in_type="frac" in_val="${fcin}" out_type="frac" out_val="${fcout}"/>
+        <fc in_type="frac" in_val="0.15" out_type="frac" out_val="0.1"/>
         <pinlocations pattern="custom">
           <loc side="left">io.outpad io.inpad io.clock</loc>
           <loc side="top">io.outpad io.inpad io.clock</loc>
@@ -52,7 +66,7 @@
         <input name="I" num_pins="40" equivalent="full"/>
         <output name="O" num_pins="10" equivalent="instance"/>
         <clock name="clk" num_pins="1"/>
-        <fc in_type="frac" in_val="${fcin}" out_type="frac" out_val="${fcout}"/>
+        <fc in_type="frac" in_val="0.15" out_type="frac" out_val="0.1"/>
         <pinlocations pattern="spread"/>
       </sub_tile>
     </tile>
@@ -93,7 +107,7 @@
       <x distr="uniform" peak="1.000000"/>
       <y distr="uniform" peak="1.000000"/>
     </chan_width_distr>
-    <switch_block type="wilton" fs="${int(fs)}"/>
+    <switch_block type="wilton" fs="3"/>
     <connection_block input_switch_name="ipin_cblock"/>
   </device>
   <switchlist>
@@ -181,22 +195,22 @@
       <output name="O" num_pins="10" equivalent="instance"/>
       <clock name="clk" num_pins="1"/>
       <!-- Describe basic logic element.  
-             Each basic logic element has a ${int(K)}-LUT that can be optionally registered
+             Each basic logic element has a 6-LUT that can be optionally registered
         -->
       <pb_type name="fle" num_pb="10">
-        <input name="in" num_pins="${int(K)}"/>
+        <input name="in" num_pins="6"/>
         <output name="out" num_pins="1"/>
         <clock name="clk" num_pins="1"/>
-        <!-- ${int(K)}-LUT mode definition begin -->
+        <!-- 6-LUT mode definition begin -->
         <mode name="n1_lut6">
-          <!-- Define ${int(K)}-LUT mode -->
+          <!-- Define 6-LUT mode -->
           <pb_type name="ble6" num_pb="1">
-            <input name="in" num_pins="${int(K)}"/>
+            <input name="in" num_pins="6"/>
             <output name="out" num_pins="1"/>
             <clock name="clk" num_pins="1"/>
             <!-- Define LUT -->
             <pb_type name="lut6" blif_model=".names" num_pb="1" class="lut">
-              <input name="in" num_pins="${int(K)}" port_class="lut_in"/>
+              <input name="in" num_pins="6" port_class="lut_in"/>
               <output name="out" num_pins="1" port_class="lut_out"/>
               <!-- LUT timing using delay matrix -->
               <!-- These are the physical delay inputs on a Stratix IV LUT but because VPR cannot do LUT rebalancing,
@@ -245,7 +259,7 @@
             <direct name="direct3" input="fle.clk" output="ble6.clk"/>
           </interconnect>
         </mode>
-        <!-- ${int(K)}-LUT mode definition end -->
+        <!-- 6-LUT mode definition end -->
       </pb_type>
       <interconnect>
         <!-- We use a full crossbar to get logical equivalence at inputs of CLB 
