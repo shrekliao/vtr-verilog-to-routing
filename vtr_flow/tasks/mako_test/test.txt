@@ -1,7 +1,7 @@
 #Note: be careful for the spaces
-#CLB TYPE (whether flut6 mode is on)
-only_n2_lut5 = {1}
-only_n1_lut6 = {1}
+#CLB TYPE (decide lut mode)
+n2_lut5 = {1, 0}
+n1_lut6 = {1, 0}
 # #N Luts in a CLB
 N = {10}
 # Wire segment length: 4 [Betz99]

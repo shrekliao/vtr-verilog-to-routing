@@ -1,3 +1,8 @@
+////////////////////////////////////////////////////////////////////////////////
+// THIS FILE WAS AUTOMATICALLY GENERATED FROM stratix_template.xml
+// DO NOT EDIT
+////////////////////////////////////////////////////////////////////////////////
+
 <!--
     This is the architecture file for a modern Intel FPGA. The blocks (logic, RAM, DSP)
     are Agilex-like, but the routing architecture is similar to Stratix IV. It is based
@@ -7,36 +12,38 @@
     The delays and areas of various components in this arch come from COFFE [2]
     runs using a 22nm technology node [3].
 
-    ##############################
     Parameters
-    ##############################
-    Parameter |   Value  | Definition
-    __________|__________|______________________________
-    N         |${int(N)} | Number of ALMs per cluster(LAB)
-    L         |${int(L)} | Wire segment length
-    I         |${int(I)} | Number of cluster inputs
-    O         |${int(O)} | Number of cluster outputs
-    K         |${int(K)} | LUT size
-    Fs        |${int(fs)}| Switch block flexibility (3 is commonly used for best routibility)
-    Fcin      |${fcin}   | Cluster input flexibility  (connection switches utilization) 
-    Fcout     |${fcout}  | Cluster output flexibility 
-    Fclocal   |0.5       | Local input crossbar population
+    Parameter | Value | Definition
+    __________|_______|______________________________
+    N         | 8| Number of ALMs per cluster(LAB)
+    L         | 4| Wire segment length
+    I         | 60| Number of cluster inputs
+    O         | 40| Number of cluster outputs
+    K         | 6| LUT size
+    Fs        |3| Switch block flexibility (3 is commonly used for best routibility)
+    Fcin      |   0.15| Cluster input flexibility  (connection switches utilization) 
+    Fcout     |  0.1| Cluster output flexibility 
+    Fclocal   |      0.5 | Local input crossbar population
 
 
-    ##############################
     Logic Cluster
-    ##############################
-% if n2_lut5 == n1_lut6:
-    FLUT6 and LUT6 are both avaliable.
-% elif n1_lut6:
-    Only normal LUT6 is used for ALM. (n1_lut6)
-% else:
-    Only fractuable LUT6 is used for ALM. (n2_lut5)       
-% endif
+    This architecture has 10 ALMs (or FLEs: Fracturable Logic Elements) per Logic Cluster
+    (or LAB or CLB), where each ALM is a 6-LUT fracturable into
+    two 5-LUTs. The ALM has 8 inputs and 4 optionally registered outputs.The two 5-LUTs should
+    share at least two inputs. Each two ALM outputs are logically equivalent, which means any
+    output signal that can reach ALM.out[0] can reach ALM.out[1] and the same thing for
+    ALM.out[2] and ALM.out[3]. The ALMs in this architecture have an arithmetic mode
+    where each 5-LUT is fractured into two 4-LUTs, resulting in a total of four 4-LUTs and two
+    bits of addition per ALM. This architecture has a single carry chain that spans the 10 ALMs
+    in the LAB.
+
+    The LAB (or Logic Cluster or CLB) has 60 inputs and 40 outputs. Two outputs of each ALM are fed 
+    to the right and left LAB using direct links and are also fed back to the LAB as feedback connections 
+    sharing the 60 input ports with the signals coming from the routing channels.
+
+    The LAB has a 50% sparsely populated input crossbar.
     
-    ##############################
     DSP Slice
-    ##############################
     This architecture has a DSP block that supports the following modes:
 
     Fixed point modes:
@@ -93,9 +100,7 @@
 
     Once this is fixed, the input crossbar code can be enabled.
 
-    ##############################
     Memory Blocks
-    ##############################
     The architecture also has a 20Kb memory blocks (or M20k or BRAM) that has true and simple dual port modes. 
     In simple dual port mode the memory can be configured in the following modes: 512x40, 1024x20 and 2048x10,
     while in true dual port mode it can be configured as: 1024x20 and 2048x10.
@@ -108,9 +113,7 @@
 
     Once this is fixed, an input crossbar can be added. The input crossbar delay from COFFE was: 29.47ps
 
-    ##############################
     Routing/Interconnect
-    ##############################
     The routing channel width is 300. Note that the channel width isn't specified directly in this arch file. 
     Switch pattern calculations assume that value. During experiments, channel width can be specified using 
     the command line switch `route_chan_width`.
@@ -120,14 +123,10 @@
     The switch blocks use a custom switching pattern based on the Stratix-IV-like architecture used in the 
     Titan flow [5]. 
 
-    ##############################
     I/Os
-    ##############################
     I/O pads are arranged along the perimeter of the FPGA. No area values provided for the I/Os.
 
-    ##############################
     Comments on similarities and differences with Intel FPGA architecture.
-    ##############################
     The main parameters of the logic blocks, DSPs and RAMs are similar to Intel FPGAs. But here are
     some important points:
     1. The DSP slice supports lower precision modes - int8 (actually 9x9) and 16-bit floating point
@@ -858,7 +857,6 @@
                             G -> fle[6]
                             H -> fle[7]
               -->
-% if n2_lut5:
           <mode name="n2_lut5">
             <pb_type name="ble5" num_pb="2">
               <input name="in" num_pins="5"/>
@@ -1026,8 +1024,6 @@
             </interconnect>
           </mode>
           <!-- n2_lut5 -->
-% endif
-% if n1_lut6:
           <mode name="n1_lut6">
             <pb_type name="ble6" num_pb="1">
               <input name="in" num_pins="6"/>
@@ -1099,7 +1095,6 @@
             </interconnect>
           </mode>
           <!-- n1_lut6 -->
-% endif
         </pb_type>
         <interconnect>
           <!-- 50% sparsely populated local routing -->

@@ -15,7 +15,7 @@
     Parameters
     Parameter | Value | Definition
     __________|_______|______________________________
-    N         | 10| Number of ALMs per cluster(LAB)
+    N         | 8| Number of ALMs per cluster(LAB)
     L         | 4| Wire segment length
     I         | 60| Number of cluster inputs
     O         | 40| Number of cluster outputs

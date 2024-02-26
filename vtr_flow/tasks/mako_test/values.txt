@@ -1,7 +1,9 @@
-#CLB_TYPE
-(n1_lut6,n2_lut5) = [(1, 1), (1, 0)]
+#Note: be careful for the spaces
+#CLB TYPE (decide lut mode)
+n2_lut5 = {1, 0}
+n1_lut6 = {1, 0}
 # #N Luts in a CLB
-N = {6,8,10}
+N = {8, 10}
 # Wire segment length: 4 [Betz99]
 L = {4}
 # Number of cluster inputs:K/2*(N+1) [Ahmed00]
@@ -9,10 +11,10 @@ I = {60}
 # Number of cluster outputs
 O = {40}
 # LUT-K: 6 [Ahmed00] [Lewis05] [Hutton06]
-# K = {6}
+K = {6}
 # Switch box flexibility (3 is commonly use)
 fs = {3, 4}
-# Connection box flexibility Fc = W/N [Betz99] [Marquardt00]
+# Connection box flexibility Fc=W/N [Betz99] [Marquardt00]
 fcin = { 0.15}
 fcout = { 0.1}
 
