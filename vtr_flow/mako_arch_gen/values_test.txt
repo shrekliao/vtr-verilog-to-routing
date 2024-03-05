@@ -1,0 +1,66 @@
+#Note: be careful for the spaces
+#CLB TYPE (decide lut mode)
+n2_lut5 = {1}
+n1_lut6 = {1}
+# #N Luts in a CLB
+N = {10}
+# Wire segment length: 4 [Betz99]
+#L = {4, 16}
+# Number of cluster inputs:K/2*(N+1) [Ahmed00]
+I = {60}
+# Number of cluster outputs
+O = {40}
+# LUT-K: 6 [Ahmed00] [Lewis05] [Hutton06]
+K = {6}
+# Switch box flexibility (3 is commonly use)
+fs = {3}
+# Connection box flexibility Fc=W/N [Betz99] [Marquardt00]
+fcin = { 0.15}
+fcout = { 0.1}
+
+# auto layout {1} or fix layout {0}
+autolayout = {1}
+
+# sitchbox type (1:custom, 0:wilton with fs)
+switch_type = {1} 
+
+#DSP Slice
+one_mult_27x27 = {1}
+two_mult_18x19 = {1}
+mult_9x9_fixed_pt_mode = {1}
+sop_2_mode = {1}
+mult_add_mode_18_19_36 = {1}
+mult_add_mode_27_27_64 = {1}
+sop_4_mode = {1}
+sop_4_accum_mode = {1}
+mac_27x27_fixed_pt_mode = {1}
+mac_18x19_fixed_pt_mode = {1}
+mac_9x9_fixed_pt_mode = {1}
+mult_fp32_mode = {1}
+mult_fp16_mode = {1}
+adder_fp32_mode = {1}
+adder_fp16_mode = {1}
+mult_fp32_clocked_mode = {1}
+mult_fp16_clocked_mode = {1}
+adder_fp32_clocked_mode = {1}
+adder_fp16_clocked_mode = {1}
+mac_fp32_mode = {1}
+mac_fp16_mode = {1}
+fp16_sum_of_products_mode = {1}
+fp16_sum_of_products_2_mult_mode = {1}
+fp16_sum_of_products_2_accum_mode = {1}
+fp16_mult_fp32_add = {1}
+fp16_mult_fp32_accum = {1}
+fp32_mult_then_add = {1}
+fp32_mult_add = {1}
+
+#segment length
+
+#BRAM Block
+mem_512x40_sp = {1}
+mem_1024x20_sp = {1}
+mem_2048x10_sp = {1}
+mem_1024x20_dp = {1}
+mem_2048x10_dp = {1}
+
+#single/double carry chain

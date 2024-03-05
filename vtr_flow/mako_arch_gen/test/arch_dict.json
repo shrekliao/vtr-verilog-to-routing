@@ -1,0 +1,434 @@
+{
+    "test/stratix.xml_0.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_1.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_2.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_3.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.2,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_4.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_5.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.1,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_6.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_7.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.2,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_8.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_9.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_10.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.15,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_11.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.15,
+        "fcout": 0.2,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_12.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.3,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_13.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.3,
+        "fcout": 0.1,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_14.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.3,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_15.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.3,
+        "fcout": 0.2,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_16.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_17.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_18.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_19.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.2,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_20.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_21.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.1,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_22.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_23.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.2,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_24.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 4,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_25.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 4,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_26.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 4,
+        "fcin": 0.15,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_27.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 4,
+        "fcin": 0.15,
+        "fcout": 0.2,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_28.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 4,
+        "fcin": 0.3,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_29.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 4,
+        "fcin": 0.3,
+        "fcout": 0.1,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_30.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 4,
+        "fcin": 0.3,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_31.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 4,
+        "fcin": 0.3,
+        "fcout": 0.2,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_32.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_33.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_34.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_35.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.2,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_36.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_37.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.1,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_38.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_39.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.2,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_40.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_41.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_42.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.15,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_43.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.15,
+        "fcout": 0.2,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_44.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.3,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_45.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.3,
+        "fcout": 0.1,
+        "autolayout": 0,
+        "switch_type": 0
+    },
+    "test/stratix.xml_46.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.3,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "test/stratix.xml_47.xml": {
+        "n2_lut5": 0,
+        "n1_lut6": 1,
+        "fs": 4,
+        "fcin": 0.3,
+        "fcout": 0.2,
+        "autolayout": 0,
+        "switch_type": 0
+    }
+}

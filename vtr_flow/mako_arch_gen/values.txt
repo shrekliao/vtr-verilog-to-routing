@@ -1,0 +1,17 @@
+#Note: be careful for the spaces
+#CLB TYPE (decide lut mode)
+n2_lut5 = {1}
+n1_lut6 = {1}
+
+#Switch box flexibility (3 is commonly use, 4 all run fail) fs is ignore well custom switchbox
+fs = {3}
+
+# Connection box flexibility Fc=W/N [Betz99] [Marquardt00]
+fcin = { 0.15, 0.3, 0.6}
+fcout = { 0.1, 0.2, 0.4}
+
+# auto layout {1} or fix layout {0}
+autolayout = {1}
+
+# sitchbox type (1:custom, 0:wilton with fs)
+switch_type = {0} 
