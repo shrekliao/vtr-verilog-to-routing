@@ -13,10 +13,10 @@ archs_dir=arch/arch_gen
 #includes_dir=benchmarks/chengchieh_test
 
 # Add circuits to list to sweep
-circuit_list_add=spree.v
-circuit_list_add=softmax.v
-#circuit_list_add=reduction_layer.v
-#circuit_list_add=diffeq2.v
+#circuit_list_add=spree.v
+#circuit_list_add=softmax.v
+circuit_list_add=reduction_layer.v
+circuit_list_add=diffeq2.v
 
 # Add architectures to list to sweep
 arch_list_add=stratix.xml_0.xml
@@ -28,15 +28,6 @@ arch_list_add=stratix.xml_5.xml
 arch_list_add=stratix.xml_6.xml
 arch_list_add=stratix.xml_7.xml
 arch_list_add=stratix.xml_8.xml
-arch_list_add=stratix.xml_9.xml
-arch_list_add=stratix.xml_10.xml
-arch_list_add=stratix.xml_11.xml
-arch_list_add=stratix.xml_12.xml
-arch_list_add=stratix.xml_13.xml
-arch_list_add=stratix.xml_14.xml
-arch_list_add=stratix.xml_15.xml
-arch_list_add=stratix.xml_16.xml
-arch_list_add=stratix.xml_17.xml
 #arch_list_add=k6FracN10LB_mem20K_complexDSP_customSB_22nm.xml
 
 # Add include files to the list.
