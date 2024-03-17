@@ -1,0 +1,9 @@
+,n2_lut5,n1_lut6,fs,fcin,fcout,autolayout,switch_type
+../arch/arch_test15/stratix.xml_0.xml,on,on,3,0.15,0.1,on,wilton
+../arch/arch_test15/stratix.xml_1.xml,on,on,3,0.15,0.2,on,wilton
+../arch/arch_test15/stratix.xml_2.xml,on,on,3,0.3,0.1,on,wilton
+../arch/arch_test15/stratix.xml_3.xml,on,on,3,0.3,0.2,on,wilton
+../arch/arch_test15/stratix.xml_4.xml,on,off,3,0.15,0.1,on,wilton
+../arch/arch_test15/stratix.xml_5.xml,on,off,3,0.15,0.2,on,wilton
+../arch/arch_test15/stratix.xml_6.xml,on,off,3,0.3,0.1,on,wilton
+../arch/arch_test15/stratix.xml_7.xml,on,off,3,0.3,0.2,on,wilton

@@ -7,7 +7,7 @@
     The delays and areas of various components in this arch come from COFFE [2]
     runs using a 22nm technology node [3].
 
-    Parameters
+    Parameters ()
     Parameter | Value | Definition
     __________|_______|______________________________
     N         |    10 | Number of BLEs per cluster
@@ -16,12 +16,12 @@
     I         |    60 | Number of cluster inputs
     O         |    40 | Number of cluster outputs
     K         |     6 | LUT size
-    Fs        |4| Switch block flexibility
+    Fs        |3| Switch block flexibility
     Fcin      |0.15| Cluster input flexibility
     Fcout     |0.1| Cluster output flexibility
     Fclocal   |   0.5 | Local input crossbar population
     
-    clb = n2_lut5 = 1.0; n1_lut6 = 1.0
+    clb = flut6 = 1.0; n2lut5_with_n1lut6 = 0.0
     AutoLayout = 1.0
     Switchtype = 0.0
 
@@ -601,7 +601,7 @@
         </pinlocations>
       </sub_tile>
     </tile>
-    <tile name="clb" height="1" width="1" area="27905">
+    <tile name="clb" height="1" width="1" area="0">
       <sub_tile name="clb">
         <equivalent_sites>
           <site pb_type="clb" pin_mapping="direct"/>
@@ -623,7 +623,7 @@
         <pinlocations pattern="spread"/>
       </sub_tile>
     </tile>
-    <tile name="dsp_top" height="4" width="1" area="253779">
+    <tile name="dsp_top" height="4" width="1" area="0">
       <sub_tile name="dsp_top">
         <equivalent_sites>
           <site pb_type="dsp_top" pin_mapping="direct"/>
@@ -659,7 +659,7 @@
         </pinlocations>
       </sub_tile>
     </tile>
-    <tile name="memory" height="2" width="1" area="137668">
+    <tile name="memory" height="2" width="1" area="0">
       <sub_tile name="memory">
         <equivalent_sites>
           <site pb_type="memory" pin_mapping="direct"/>
@@ -696,7 +696,7 @@
       <x distr="uniform" peak="1.000000"/>
       <y distr="uniform" peak="1.000000"/>
     </chan_width_distr>
-    <switch_block type="wilton" fs="4"/>
+    <switch_block type="wilton" fs="3"/>
     <connection_block input_switch_name="ipin_cblock"/>
   </device>
   <switchlist>
@@ -809,7 +809,7 @@
                             F -> fle[5]
                             G -> fle[6]
                             H -> fle[7]
-              -->
+              -->               
           <mode name="n2_lut5">
             <pb_type name="ble5" num_pb="2">
               <input name="in" num_pins="5"/>
@@ -977,77 +977,7 @@
             </interconnect>
           </mode>
           <!-- n2_lut5 -->
-          <mode name="n1_lut6">
-            <pb_type name="ble6" num_pb="1">
-              <input name="in" num_pins="6"/>
-              <output name="out" num_pins="4"/>
-              <clock name="clk" num_pins="1"/>
-              <pb_type name="lut6" blif_model=".names" num_pb="1" class="lut">
-                <input name="in" num_pins="6" port_class="lut_in"/>
-                <output name="out" num_pins="1" port_class="lut_out"/>
-                <!-- LUT timing using delay matrix -->
-                <!-- These are the physical delay inputs on a Stratix 10 LUT but because VPR cannot do LUT rebalancing,
-                           we instead take the average of these numbers to get more stable results
-                           257.8e-12
-                           253.69e-12
-                           190.3e-12
-                           183.78e-12
-                           114.96e-12
-                           77.18e-12
-                      -->
-                <delay_matrix type="max" in_port="lut6.in" out_port="lut6.out">
-                        179.6e-12
-                        179.6e-12
-                        179.6e-12
-                        179.6e-12
-                        179.6e-12
-                        179.6e-12
-                    </delay_matrix>
-              </pb_type>
-              <pb_type name="ff" blif_model=".latch" num_pb="2" class="flipflop">
-                <input name="D" num_pins="1" port_class="D"/>
-                <output name="Q" num_pins="1" port_class="Q"/>
-                <clock name="clk" num_pins="1" port_class="clock"/>
-                <T_setup value="18.91e-12" port="ff.D" clock="clk"/>
-                <T_clock_to_Q max="60.32e-12" port="ff.Q" clock="clk"/>
-              </pb_type>
-              <interconnect>
-                <direct name="lut6_inputs" input="ble6.in" output="lut6.in"/>
-                <direct name="lut6_ff" input="lut6.out" output="ff[1].D">
-                  <delay_constant max="18.96e-12" in_port="lut6.out" out_port="ff[1].D"/>
-                  <pack_pattern name="ble6" in_port="lut6.out" out_port="ff[1].D"/>
-                </direct>
-                <complete name="clock" input="ble6.clk" output="ff.clk"/>
-                <direct name="input_to_ff" input="ble6.in[0]" output="ff[0].D"/>
-                <mux name="mux1" input="ff[0].Q lut6.out" output="ble6.out[0]">
-                  <delay_constant max="39.85e-12" in_port="lut6.out" out_port="ble6.out[0]"/>
-                  <delay_constant max="39.85e-12" in_port="ff[0].Q" out_port="ble6.out[0]"/>
-                </mux>
-                <!-- This mux is the same as mux1 but connected to output 2 -->
-                <mux name="mux2" input="ff[0].Q lut6.out" output="ble6.out[1]">
-                  <delay_constant max="39.85e-12" in_port="lut6.out" out_port="ble6.out[1]"/>
-                  <delay_constant max="39.85e-12" in_port="ff[0].Q" out_port="ble6.out[1]"/>
-                </mux>
-                <mux name="mux3" input="ff[1].Q lut6.out" output="ble6.out[2]">
-                  <delay_constant max="39.85e-12" in_port="lut6.out" out_port="ble6.out[2]"/>
-                  <delay_constant max="39.85e-12" in_port="ff[1].Q" out_port="ble6.out[2]"/>
-                </mux>
-                <!-- This mux is the same as mux2 but connected to output 3 -->
-                <mux name="mux4" input="ff[1].Q lut6.out" output="ble6.out[3]">
-                  <delay_constant max="39.85e-12" in_port="lut6.out" out_port="ble6.out[3]"/>
-                  <delay_constant max="39.85e-12" in_port="ff[1].Q" out_port="ble6.out[3]"/>
-                </mux>
-              </interconnect>
-            </pb_type>
-            <interconnect>
-              <!-- ble6 takes inputs A, B, C, D, E, & F; where F is fle[7] -->
-              <direct name="lut6_inputs1" input="fle.in[4:0]" output="ble6.in[4:0]"/>
-              <direct name="lut6_inputs2" input="fle.in[7]" output="ble6.in[5]"/>
-              <direct name="direct2" input="ble6.out" output="fle.out"/>
-              <direct name="direct4" input="fle.clk" output="ble6.clk"/>
-            </interconnect>
-          </mode>
-          <!-- n1_lut6 -->
+          <!-- n1_lut6 -->        
         </pb_type>
         <interconnect>
           <!-- 50% sparsely populated local routing -->

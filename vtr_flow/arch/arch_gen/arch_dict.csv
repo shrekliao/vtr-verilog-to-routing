@@ -1,19 +1,25 @@
-,n2_lut5,n1_lut6,fs,fcin,fcout,autolayout,switch_type
-../arch/arch_gen/stratix.xml_0.xml,on,on,3,0.15,0.1,on,wilton
-../arch/arch_gen/stratix.xml_1.xml,on,on,3,0.15,0.2,on,wilton
-../arch/arch_gen/stratix.xml_2.xml,on,on,3,0.15,0.4,on,wilton
-../arch/arch_gen/stratix.xml_3.xml,on,on,3,0.3,0.1,on,wilton
-../arch/arch_gen/stratix.xml_4.xml,on,on,3,0.3,0.2,on,wilton
-../arch/arch_gen/stratix.xml_5.xml,on,on,3,0.3,0.4,on,wilton
-../arch/arch_gen/stratix.xml_6.xml,on,on,3,0.6,0.1,on,wilton
-../arch/arch_gen/stratix.xml_7.xml,on,on,3,0.6,0.2,on,wilton
-../arch/arch_gen/stratix.xml_8.xml,on,on,3,0.6,0.4,on,wilton
-../arch/arch_gen/stratix.xml_9.xml,on,on,4,0.15,0.1,on,wilton
-../arch/arch_gen/stratix.xml_10.xml,on,on,4,0.15,0.2,on,wilton
-../arch/arch_gen/stratix.xml_11.xml,on,on,4,0.15,0.4,on,wilton
-../arch/arch_gen/stratix.xml_12.xml,on,on,4,0.3,0.1,on,wilton
-../arch/arch_gen/stratix.xml_13.xml,on,on,4,0.3,0.2,on,wilton
-../arch/arch_gen/stratix.xml_14.xml,on,on,4,0.3,0.4,on,wilton
-../arch/arch_gen/stratix.xml_15.xml,on,on,4,0.6,0.1,on,wilton
-../arch/arch_gen/stratix.xml_16.xml,on,on,4,0.6,0.2,on,wilton
-../arch/arch_gen/stratix.xml_17.xml,on,on,4,0.6,0.4,on,wilton
+,flut6,n2lut5_with_n1lut6,fs,fcin,fcout,autolayout,switch_type
+../arch/arch_gen/stratix.xml_0.xml,on,on,3,0.15,0.1,on,custom
+../arch/arch_gen/stratix.xml_1.xml,on,on,3,0.15,0.1,on,wilton
+../arch/arch_gen/stratix.xml_2.xml,on,on,3,0.15,0.2,on,custom
+../arch/arch_gen/stratix.xml_3.xml,on,on,3,0.15,0.2,on,wilton
+../arch/arch_gen/stratix.xml_4.xml,on,on,3,0.2,0.1,on,custom
+../arch/arch_gen/stratix.xml_5.xml,on,on,3,0.2,0.1,on,wilton
+../arch/arch_gen/stratix.xml_6.xml,on,on,3,0.2,0.2,on,custom
+../arch/arch_gen/stratix.xml_7.xml,on,on,3,0.2,0.2,on,wilton
+../arch/arch_gen/stratix.xml_8.xml,on,off,3,0.15,0.1,on,custom
+../arch/arch_gen/stratix.xml_9.xml,on,off,3,0.15,0.1,on,wilton
+../arch/arch_gen/stratix.xml_10.xml,on,off,3,0.15,0.2,on,custom
+../arch/arch_gen/stratix.xml_11.xml,on,off,3,0.15,0.2,on,wilton
+../arch/arch_gen/stratix.xml_12.xml,on,off,3,0.2,0.1,on,custom
+../arch/arch_gen/stratix.xml_13.xml,on,off,3,0.2,0.1,on,wilton
+../arch/arch_gen/stratix.xml_14.xml,on,off,3,0.2,0.2,on,custom
+../arch/arch_gen/stratix.xml_15.xml,on,off,3,0.2,0.2,on,wilton
+../arch/arch_gen/stratix.xml_16.xml,off,don't care,3,0.15,0.1,on,custom
+../arch/arch_gen/stratix.xml_17.xml,off,don't care,3,0.15,0.1,on,wilton
+../arch/arch_gen/stratix.xml_18.xml,off,don't care,3,0.15,0.2,on,custom
+../arch/arch_gen/stratix.xml_19.xml,off,don't care,3,0.15,0.2,on,wilton
+../arch/arch_gen/stratix.xml_20.xml,off,don't care,3,0.2,0.1,on,custom
+../arch/arch_gen/stratix.xml_21.xml,off,don't care,3,0.2,0.1,on,wilton
+../arch/arch_gen/stratix.xml_22.xml,off,don't care,3,0.2,0.2,on,custom
+../arch/arch_gen/stratix.xml_23.xml,off,don't care,3,0.2,0.2,on,wilton

@@ -1,0 +1,74 @@
+{
+    "../arch/arch_test15/stratix.xml_0.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "../arch/arch_test15/stratix.xml_1.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "../arch/arch_test15/stratix.xml_2.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "../arch/arch_test15/stratix.xml_3.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 1,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "../arch/arch_test15/stratix.xml_4.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "../arch/arch_test15/stratix.xml_5.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "../arch/arch_test15/stratix.xml_6.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.1,
+        "autolayout": 1,
+        "switch_type": 0
+    },
+    "../arch/arch_test15/stratix.xml_7.xml": {
+        "n2_lut5": 1,
+        "n1_lut6": 0,
+        "fs": 3,
+        "fcin": 0.3,
+        "fcout": 0.2,
+        "autolayout": 1,
+        "switch_type": 0
+    }
+}

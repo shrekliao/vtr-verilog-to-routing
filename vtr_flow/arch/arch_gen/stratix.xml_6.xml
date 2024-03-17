@@ -7,7 +7,7 @@
     The delays and areas of various components in this arch come from COFFE [2]
     runs using a 22nm technology node [3].
 
-    Parameters
+    Parameters ()
     Parameter | Value | Definition
     __________|_______|______________________________
     N         |    10 | Number of BLEs per cluster
@@ -17,13 +17,13 @@
     O         |    40 | Number of cluster outputs
     K         |     6 | LUT size
     Fs        |3| Switch block flexibility
-    Fcin      |0.6| Cluster input flexibility
-    Fcout     |0.1| Cluster output flexibility
+    Fcin      |0.2| Cluster input flexibility
+    Fcout     |0.2| Cluster output flexibility
     Fclocal   |   0.5 | Local input crossbar population
     
-    clb = n2_lut5 = 1.0; n1_lut6 = 1.0
+    clb = flut6 = 1.0; n2lut5_with_n1lut6 = 1.0
     AutoLayout = 1.0
-    Switchtype = 0.0
+    Switchtype = 1.0
 
     Logic Cluster
     This architecture has 10 ALMs (or FLEs: Fracturable Logic Elements) per Logic Cluster
@@ -592,7 +592,7 @@
         <input name="outpad" num_pins="1"/>
         <output name="inpad" num_pins="1"/>
         <clock name="clock" num_pins="1"/>
-        <fc in_type="frac" in_val="0.6" out_type="frac" out_val="0.1"/>
+        <fc in_type="frac" in_val="0.2" out_type="frac" out_val="0.2"/>
         <pinlocations pattern="custom">
           <loc side="left">io.outpad io.inpad io.clock</loc>
           <loc side="top">io.outpad io.inpad io.clock</loc>
@@ -601,7 +601,7 @@
         </pinlocations>
       </sub_tile>
     </tile>
-    <tile name="clb" height="1" width="1" area="27905">
+    <tile name="clb" height="1" width="1" area="0">
       <sub_tile name="clb">
         <equivalent_sites>
           <site pb_type="clb" pin_mapping="direct"/>
@@ -614,7 +614,7 @@
         <output name="O" num_pins="40" equivalent="none"/>
         <output name="cout" num_pins="1"/>
         <clock name="clk" num_pins="1"/>
-        <fc in_type="frac" in_val="0.6" out_type="frac" out_val="0.1">
+        <fc in_type="frac" in_val="0.2" out_type="frac" out_val="0.2">
           <fc_override port_name="cin" fc_type="frac" fc_val="0"/>
           <fc_override port_name="cout" fc_type="frac" fc_val="0"/>
           <!-- clock pins do not connect to local routing -->
@@ -623,7 +623,7 @@
         <pinlocations pattern="spread"/>
       </sub_tile>
     </tile>
-    <tile name="dsp_top" height="4" width="1" area="253779">
+    <tile name="dsp_top" height="4" width="1" area="0">
       <sub_tile name="dsp_top">
         <equivalent_sites>
           <site pb_type="dsp_top" pin_mapping="direct"/>
@@ -637,7 +637,7 @@
         <output name="chainout" num_pins="64"/>
         <output name="scanout" num_pins="27"/>
         <clock name="clk" num_pins="1"/>
-        <fc in_type="frac" in_val="0.6" out_type="frac" out_val="0.1">
+        <fc in_type="frac" in_val="0.2" out_type="frac" out_val="0.2">
           <!-- clock pins and chain ports do not connect to local routing -->
           <fc_override port_name="clk" fc_type="frac" fc_val="0"/>
           <fc_override port_name="chainin" fc_type="frac" fc_val="0"/>
@@ -659,7 +659,7 @@
         </pinlocations>
       </sub_tile>
     </tile>
-    <tile name="memory" height="2" width="1" area="137668">
+    <tile name="memory" height="2" width="1" area="0">
       <sub_tile name="memory">
         <equivalent_sites>
           <site pb_type="memory" pin_mapping="direct"/>
@@ -671,7 +671,7 @@
       <input name="we2" num_pins="1"/>
       <output name="out" num_pins="40"/>
       <clock name="clk" num_pins="1"/>
-        <fc in_type="frac" in_val="0.6" out_type="frac" out_val="0.1">
+        <fc in_type="frac" in_val="0.2" out_type="frac" out_val="0.2">
           <fc_override fc_type="frac" fc_val="0" port_name="clk"/>
         </fc>  
         <pinlocations pattern="spread"/>
@@ -809,7 +809,7 @@
                             F -> fle[5]
                             G -> fle[6]
                             H -> fle[7]
-              -->
+              -->               
           <mode name="n2_lut5">
             <pb_type name="ble5" num_pb="2">
               <input name="in" num_pins="5"/>
@@ -1047,7 +1047,7 @@
               <direct name="direct4" input="fle.clk" output="ble6.clk"/>
             </interconnect>
           </mode>
-          <!-- n1_lut6 -->
+          <!-- n1_lut6 -->        
         </pb_type>
         <interconnect>
           <!-- 50% sparsely populated local routing -->
