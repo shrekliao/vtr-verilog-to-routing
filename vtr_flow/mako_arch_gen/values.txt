@@ -3,15 +3,17 @@
 flut6 = {1, 0}
 n2lut5_with_n1lut6 = {1, 0}
 
-#Switch box flexibility (3 is commonly use, 4 all run fail) fs is ignore well custom switchbox
+# Switch box flexibility (3 is commonly use, 4 all run fail?) fs is ignore well custom switchbox
 fs = {3}
 
-# Connection box flexibility Fc=W/N [Betz99] [Marquardt00]
+# Connection box flexibility
 fcin = { 0.15, 0.2}
 fcout = { 0.1, 0.2}
+
+# wire length only 4 or ...
 
 # auto layout {1} or fix layout {0}
 autolayout = {1}
 
-# sitchbox type (1:custom, 0:wilton with fs)
+# sitchbox type (1:custom, 0:wilton with fs) add unidir: mux, bidir: trsisate|passgate
 switch_type = {1, 0} 

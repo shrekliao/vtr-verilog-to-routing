@@ -1,0 +1,50 @@
+#
+############################################
+# Configuration file for running experiments
+##############################################
+
+# Path to directory of circuits to use
+circuits_dir=tasks/RC3_2_wirelength/a4_benchmarks/
+
+# Path to directory of architectures to use
+archs_dir=tasks/RC3_2_wirelength/arch/
+
+# Directory containing the verilog includes file(s)
+includes_dir=tasks/RC3_2_wirelength/a4_benchmarks/
+
+# Add circuits to list to sweep
+circuit_list_add=s38417.blif
+circuit_list_add=pdc.blif
+circuit_list_add=frisc.blif
+circuit_list_add=ex1010.blif
+circuit_list_add=elliptic.blif
+circuit_list_add=clma.blif
+circuit_list_add=spla.blif
+circuit_list_add=s38584.1.blif
+
+# Add architectures to list to sweep
+#arch_list_add=k6_frac_N10_40nm_L4.xml
+#arch_list_add=k6_frac_N10_40nm_L1.xml
+#arch_list_add=k6_frac_N10_40nm_L16.xml
+arch_list_add=k6_frac_N10_40nm_L4_bi_pass.xml
+#arch_list_add=k6_frac_N10_40nm_L4_bi_tri.xml
+
+# Add include files to the list.
+# Some benchmarks instantiate hard dsp and memory blocks 
+# This functionality is guarded under the `complex_dsp` and `hard_mem` macros. 
+# The hard_block_include.v file 
+# defines this macros, thereby enabling instantiations of the hard blocks
+# include_list_add=hard_block_include.v
+
+# Parse info and how to parse
+parse_file=vpr_standard.txt
+
+# How to parse QoR info
+#qor_parse_file=qor_standard.txt
+qor_parse_file=lab3.txt
+
+# Pass requirements
+pass_requirements_file=pass_requirements.txt
+
+#Script parameters
+script_params=-track_memory_usage -crit_path_router_iterations 100 -starting_stage vpr

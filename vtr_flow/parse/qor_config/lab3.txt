@@ -1,0 +1,10 @@
+vpr_status;output.txt;vpr_status=(.*)
+Seeds;vpr.out;PlaceOpts.seed:\s*(\d+)
+Min_chan_width;vpr.out;Best routing used a channel width factor of (\d+)
+Total_routing_block_area;vpr.out;	Total routing area: (.*),
+total_routing_block_area_(1.3mcw);vpr.crit_path.out;	Total routing area: (.*),
+crit_path_delay_(1.3mcw);vpr.crit_path.out;Final critical path delay \(least slack\):\s*(\d+\.\d+)\s*ns
+Critical_path_delay;vpr.out;Final critical path delay \(least slack\):\s*(\d+\.\d+)\s*ns
+
+
+

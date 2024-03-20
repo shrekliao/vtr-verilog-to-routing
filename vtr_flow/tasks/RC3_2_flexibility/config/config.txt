@@ -4,20 +4,31 @@
 ##############################################
 
 # Path to directory of circuits to use
-circuits_dir=benchmarks/chengchieh_test
+circuits_dir=tasks/RC3_2_flexibility/a4_benchmarks/
 
 # Path to directory of architectures to use
-archs_dir=arch/chengchieh_test
+archs_dir=tasks/RC3_2_flexibility/arch/
 
 # Directory containing the verilog includes file(s)
-includes_dir=benchmarks/chengchieh_test
+includes_dir=tasks/RC3_2_flexibility/a4_benchmarks/
 
 # Add circuits to list to sweep
-circuit_list_add=shift_register_2bit.v
-circuit_list_add=adder_1bits.v
+circuit_list_add=s38417.blif
+circuit_list_add=pdc.blif
+circuit_list_add=frisc.blif
+circuit_list_add=ex1010.blif
+circuit_list_add=elliptic.blif
+circuit_list_add=clma.blif
+circuit_list_add=spla.blif
+circuit_list_add=s38584.1.blif
 
 # Add architectures to list to sweep
-arch_list_add=k6_N3_4x4T_40nm.xml
+#arch_list_add=k6_frac_N10_40nm_fc1.xml
+#arch_list_add=k6_frac_N10_40nm_fc05.xml
+#arch_list_add=k6_frac_N10_40nm_fc015.xml
+arch_list_add=k6_N10_sparse_crossbar_40nm_fc1.xml
+arch_list_add=k6_N10_sparse_crossbar_40nm_fc05.xml
+arch_list_add=k6_N10_sparse_crossbar_40nm_fc015.xml
 
 # Add include files to the list.
 # Some benchmarks instantiate hard dsp and memory blocks 
@@ -30,10 +41,11 @@ arch_list_add=k6_N3_4x4T_40nm.xml
 parse_file=vpr_standard.txt
 
 # How to parse QoR info
-qor_parse_file=qor_standard.txt
+#qor_parse_file=qor_standard.txt
+qor_parse_file=lab3.txt
 
 # Pass requirements
 pass_requirements_file=pass_requirements.txt
 
 #Script parameters
-script_params=-track_memory_usage -crit_path_router_iterations 100 --starting_stage vpr
+script_params=-track_memory_usage -crit_path_router_iterations 100 -starting_stage vpr --flat_routing on
