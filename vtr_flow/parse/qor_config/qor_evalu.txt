@@ -1,0 +1,27 @@
+vpr_status;output.txt;vpr_status=(.*)
+#total_wirelength;vpr.out;\s*Total wirelength:\s*(\d+)
+total_runtime;vpr.out;The entire flow of VPR took (.*) seconds
+Total_used_logic_block_area;vpr.out;	Total used logic block area: (.*)
+Total_routing_block_area;vpr.out;	Total routing area: (.*),
+#crit_path_delay_(1.3mcw);vpr.crit_path.out;Final critical path delay \(least slack\):\s*(\d+\.\d+)\s*ns
+#total_routing_block_area_(1.3mcw);vpr.crit_path.out;	Total routing area: (.*),
+#total_wirelength_(mcw);vpr.out;Total wirelength:\s*(\d+)
+#total_wirelength_(1.3mcw);vpr.crit_path.out;Total wirelength:\s*(\d+)
+#pack_time;vpr.out;Packing took (.*) seconds
+#place_time;vpr.out;Placement took (.*) seconds
+#route_time;vpr.out;Routing took (.*) seconds
+#num_pre_packed_nets;vpr.out;Total Nets: (\d+)
+#num_pre_packed_blocks;vpr.out;Total Blocks: (\d+)
+#num_post_packed_nets;vpr.out;Netlist num_nets:\s*(\d+)
+#num_clb;vpr.out;Netlist clb blocks:\s*(\d+)
+#num_io;vpr.out;Netlist inputs pins:\s*(\d+)
+#num_outputs;vpr.out;Netlist output pins:\s*(\d+)
+#num_memories;vpr.out;Netlist \s*(\d+) blocks:\s*(\d+)
+#num_mult;vpr.out;Netlist mult_36 blocks:\s*(\d+)
+Min_chan_width;vpr.out;Best routing used a channel width factor of (\d+)
+Critical_path_delay;vpr.out;Final critical path delay \(least slack\):\s*(\d+\.\d+)\s*ns
+Number_of_CLB_blocks;vpr.out;       clb\s*(\d+)
+Number_of_DSP_blocks;vpr.out;   dsp_top\s*(\d+)
+Number_of_BRAM_blocks;vpr.out;    memory\s*(\d+)
+
+

@@ -1,0 +1,2 @@
+ arch	  circuit	  script_params	  vpr_status	  Seeds	  Min_chan_width	  Total_routing_block_area	  total_routing_block_area_(1.3mcw)	  crit_path_delay_(1.3mcw)	  Critical_path_delay	  Av_BB_Cost	 
+ k6_frac_N10_mem32K_40nm.xml	  alu4.blif	  common	  success	  1	  -1	  -1	  -1	  -1	  -1	  -1	 

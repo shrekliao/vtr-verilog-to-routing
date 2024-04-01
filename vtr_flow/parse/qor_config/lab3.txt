@@ -1,10 +1,12 @@
 vpr_status;output.txt;vpr_status=(.*)
 Seeds;vpr.out;PlaceOpts.seed:\s*(\d+)
 Min_chan_width;vpr.out;Best routing used a channel width factor of (\d+)
-Total_routing_block_area;vpr.out;	Total routing area: (.*),
+#Total_routing_block_area;vpr.out;	Total routing area: (.*),
 total_routing_block_area_(1.3mcw);vpr.crit_path.out;	Total routing area: (.*),
+crit_path_routing_area_total;vpr.crit_path.out;\s*Total routing area: (.*), per logic tile: .*
 crit_path_delay_(1.3mcw);vpr.crit_path.out;Final critical path delay \(least slack\):\s*(\d+\.\d+)\s*ns
-Critical_path_delay;vpr.out;Final critical path delay \(least slack\):\s*(\d+\.\d+)\s*ns
-
+#Critical_path_delay;vpr.out;Final critical path delay \(least slack\):\s*(\d+\.\d+)\s*ns
+#Av_BB_Cost;vpr.out;BB estimate of min-dist (placement) wire length:\s*(\d+)
+routing_block_area_buffershare;vpr.outs;\s*Assuming buffer sharing \(slightly optimistic\). Total: (\d+\.\d+),
 
 

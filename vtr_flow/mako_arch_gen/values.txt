@@ -1,19 +1,21 @@
 #Note: be careful for the spaces
-#CLB TYPE (decide lut mode) flut6 off means only lut6 (N10:flut6, N8:lut, need to change later)
+#CLB TYPE (decide lut mode) flut6 off means only lut6 (N10)
 flut6 = {1, 0}
-n2lut5_with_n1lut6 = {1, 0}
+n2lut5_with_n1lut6 = {1, 0} #only when flut6 is 1 , need to consider is it only n1lut6 or with n2lut5
 
-# Switch box flexibility (3 is commonly use, 4 all run fail?) fs is ignore well custom switchbox
+# Switch box flexibility
 fs = {3}
 
 # Connection box flexibility
-fcin = { 0.15, 0.2}
-fcout = { 0.1, 0.2}
+fcin = { 0.15}
+fcout = { 0.1}
 
-# wire length only 4 or ...
+# wire length only 4 or 16
 
 # auto layout {1} or fix layout {0}
 autolayout = {1}
 
-# sitchbox type (1:custom, 0:wilton with fs) add unidir: mux, bidir: trsisate|passgate
-switch_type = {1, 0} 
+# sitch block type (0:wilton, 1:subset, 2:universal)
+switch_block_type = {0, 1, 2}
+
+# sitch box type (0: mux(unidir), 1:trsisate, 2:passgate)

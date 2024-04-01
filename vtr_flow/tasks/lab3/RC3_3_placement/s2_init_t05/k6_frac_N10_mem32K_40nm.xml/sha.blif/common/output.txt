@@ -1,0 +1,5 @@
+vpr_status=success
+vpr_seconds=3
+rundir=/mnt/vault0/cliao43/vtr_cc/vtr-verilog-to-routing/vtr_flow/tasks/RC3_3_placement
+hostname=en4228283l
+error=

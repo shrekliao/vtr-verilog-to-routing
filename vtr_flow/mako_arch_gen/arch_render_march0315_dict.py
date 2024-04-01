@@ -54,8 +54,8 @@ def write_csv_file(filename, data):
     for key, value in values.items():
       if key in ['flut6', 'autolayout']:  # Convert these directly to "on"/"off"
         values[key] = 'on' if value == 1 else 'off'
-      elif key in ['switch_type']:
-        values[key] = 'custom' if value == 1 else 'wilton'
+#      elif key in ['switch_block_type']:
+#        values[key] = 'custom' if value == 1 else 'wilton'
       elif key == 'n2lut5_with_n1lut6':
         if 'flut6' in values and values['flut6'] == 'off':
           values[key] = "don't care"
@@ -68,7 +68,6 @@ def write_csv_file(filename, data):
   df = pd.DataFrame(data).T
   # Write the DataFrame to a CSV file
   df.to_csv(filename)
-
 
 
 def main():

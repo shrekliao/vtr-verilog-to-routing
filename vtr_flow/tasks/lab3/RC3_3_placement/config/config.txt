@@ -1,0 +1,45 @@
+#
+############################################
+# Configuration file for running experiments
+##############################################
+
+# Path to directory of circuits to use
+circuits_dir=tasks/RC3_3_placement/benchmarks/
+
+# Path to directory of architectures to use
+archs_dir=tasks/RC3_3_placement/arch/
+
+# Directory containing the verilog includes file(s)
+includes_dir=tasks/RC3_3_placement/benchmarks/
+
+# Add circuits to list to sweep
+circuit_list_add=sha.blif
+circuit_list_add=diffeq1.blif
+circuit_list_add=ex4p.blif
+circuit_list_add=alu4.blif
+
+# Add architectures to list to sweep
+arch_list_add=k6_frac_N10_mem32K_40nm.xml
+
+# Add include files to the list.
+# Some benchmarks instantiate hard dsp and memory blocks 
+# This functionality is guarded under the `complex_dsp` and `hard_mem` macros. 
+# The hard_block_include.v file 
+# defines this macros, thereby enabling instantiations of the hard blocks
+# include_list_add=hard_block_include.v
+
+# Parse info and how to parse
+parse_file=vpr_standard.txt
+
+# How to parse QoR info
+qor_parse_file=qor_standard.txt
+
+# Pass requirements
+pass_requirements_file=pass_requirements.txt
+
+#Script parameters
+#script_params=-track_memory_usage -starting_stage vpr -pack -place -place_algorithm bounding_box -RL_agent_placement off -init_t 0.5 -inner_num 10 -exit_t 0.000001
+#script_params=-track_memory_usage -starting_stage vpr -pack -place -place_algorithm bounding_box -RL_agent_placement off -init_t 0.1 -inner_num 10 -exit_t 0.000001
+#script_params=-track_memory_usage -starting_stage vpr -pack -place -place_algorithm bounding_box -RL_agent_placement off -init_t 0.01 -inner_num 10 -exit_t 0.000001
+#script_params=-track_memory_usage -starting_stage vpr -pack -place -place_algorithm bounding_box -RL_agent_placement off -init_t 0.001 -inner_num 10 -exit_t 0.000001
+script_params=-track_memory_usage -starting_stage vpr -pack -place -place_algorithm bounding_box -RL_agent_placement off -init_t 0.0001 -inner_num 10 -exit_t 0.000001
