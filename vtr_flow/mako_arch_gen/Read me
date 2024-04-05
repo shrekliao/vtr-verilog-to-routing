@@ -1,1 +1,1 @@
-python3 arch_render_march0315_dict.py -i stratix_template_0315.xml -o ../arch/arch_gen/stratix.xml -p values.txt
+python3 arch_render_march0315_dict.py -i arch_template_0402.xml -o ../arch/arch_gen/stratix.xml -p values.txt

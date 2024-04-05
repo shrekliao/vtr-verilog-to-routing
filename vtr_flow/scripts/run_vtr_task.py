@@ -513,3 +513,4 @@ def run_vtr_flow_process(queue, run_dirs, job, script) -> None:
 
 if __name__ == "__main__":
     vtr_command_main(sys.argv[1:])
+    

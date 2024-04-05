@@ -4,10 +4,10 @@
 ##############################################
 
 # Path to directory of circuits to use
-circuits_dir=benchmarks/verilog
+circuits_dir=tasks/push_bottom_demo/Benchmarks
 
 # Path to directory of architectures to use
-archs_dir=arch/arch_gen
+archs_dir=tasks/push_bottom_demo/Architectures
 
 # Directory containing the verilog includes file(s)
 #includes_dir=benchmarks/verilog
@@ -30,12 +30,62 @@ circuit_list_add=sha.v
 circuit_list_add=spree.v
 circuit_list_add=arm_core.v
 circuit_list_add=LU8PEEng.v
-circuit_list_add=diffeq2.v
-circuit_list_add=or1200.v
-circuit_list_add=arm_core.v
 
 # Add architectures to list to sweep
-
+arch_list_add=stratix.xml_6.xml
+arch_list_add=stratix.xml_1.xml
+arch_list_add=stratix.xml_7.xml
+arch_list_add=stratix.xml_3.xml
+arch_list_add=stratix.xml_5.xml
+arch_list_add=stratix.xml_2.xml
+arch_list_add=stratix.xml_27.xml
+arch_list_add=stratix.xml_21.xml
+arch_list_add=stratix.xml_4.xml
+arch_list_add=stratix.xml_32.xml
+arch_list_add=stratix.xml_51.xml
+arch_list_add=stratix.xml_12.xml
+arch_list_add=stratix.xml_11.xml
+arch_list_add=stratix.xml_42.xml
+arch_list_add=stratix.xml_23.xml
+arch_list_add=stratix.xml_34.xml
+arch_list_add=stratix.xml_48.xml
+arch_list_add=stratix.xml_36.xml
+arch_list_add=stratix.xml_20.xml
+arch_list_add=stratix.xml_31.xml
+arch_list_add=stratix.xml_28.xml
+arch_list_add=stratix.xml_49.xml
+arch_list_add=stratix.xml_53.xml
+arch_list_add=stratix.xml_15.xml
+arch_list_add=stratix.xml_19.xml
+arch_list_add=stratix.xml_17.xml
+arch_list_add=stratix.xml_29.xml
+arch_list_add=stratix.xml_41.xml
+arch_list_add=stratix.xml_22.xml
+arch_list_add=stratix.xml_14.xml
+arch_list_add=stratix.xml_39.xml
+arch_list_add=stratix.xml_24.xml
+arch_list_add=stratix.xml_46.xml
+arch_list_add=stratix.xml_18.xml
+arch_list_add=stratix.xml_25.xml
+arch_list_add=stratix.xml_52.xml
+arch_list_add=stratix.xml_47.xml
+arch_list_add=stratix.xml_10.xml
+arch_list_add=stratix.xml_26.xml
+arch_list_add=stratix.xml_33.xml
+arch_list_add=stratix.xml_50.xml
+arch_list_add=stratix.xml_9.xml
+arch_list_add=stratix.xml_30.xml
+arch_list_add=stratix.xml_0.xml
+arch_list_add=stratix.xml_45.xml
+arch_list_add=stratix.xml_37.xml
+arch_list_add=stratix.xml_43.xml
+arch_list_add=stratix.xml_8.xml
+arch_list_add=stratix.xml_16.xml
+arch_list_add=stratix.xml_35.xml
+arch_list_add=stratix.xml_38.xml
+arch_list_add=stratix.xml_40.xml
+arch_list_add=stratix.xml_13.xml
+arch_list_add=stratix.xml_44.xml
 
 # Add include files to the list.
 # Some benchmarks instantiate hard dsp and memory blocks 
