@@ -19,7 +19,7 @@ archs_dir=arch/arch_gen
 circuit_list_add=diffeq2.v
 
 # Add architectures to list to sweep
-arch_list_add=stratix.xml_0.xml
+#arch_list_add=stratix.xml_0.xml
 arch_list_add=stratix.xml_1.xml
 #arch_list_add=stratix.xml_2.xml
 #arch_list_add=stratix.xml_3.xml

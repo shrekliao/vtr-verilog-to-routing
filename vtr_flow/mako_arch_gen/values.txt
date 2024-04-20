@@ -1,22 +1,27 @@
 #Note: be careful for the spaces
-# Arithmetic mode (fix)
+
 #CLB TYPE (decide lut mode) flut6 off means only lut6 (N10)
-flut6 = {1} # n2lut5 need fix
+flut6 = {0} 
 n2lut5_with_n1lut6 = {0, 1} # only when flut6 is 1 , need to consider is it only n2lut5 or with n1lut6
 
-# Switch box flexibility
+# Switch box flexibility (check: When using unidirectional segments, one can specify an Fs that is any multiple of 3?)
 fs = {3}
 
 # Connection box flexibility
-fcin = { 0.15, 0.2, 0.25}
-fcout = { 0.1, 0.15, 0.2}
+fcin = { 0.15}
+fcout = { 0.1}
 
-# wire length only (0:L4, need fix) or (1:L4+L16)
+# wire length only (0:L4, 1:L4+L16): check: currently simply remove L16
+wire_length = {1}
 
 # auto layout 1 or fix layout 0
+auto_layout = {1}
 
-# sitch block type (0:wilton, 1:subset, 2:universal:fix)
-switch_block_type = {0, 1, 2}
+# sitch block type (0:wilton, 1:subset, 2:custom) make sure custom only support wirelength:1 and fs:3
+switch_block_type = {0}
 
-# sitch box type (0: mux(unidir), 1:trsisate(bidir), 2:passgate(bidir)) fix
-switch_box_type = {0}
+# sitch type (0: mux(unidir), 1:trsisate(bidir))
+switch_type = {0}
+
+# sparse local matrix (0:50%sparse, 1:full) only the lut6 (script not fix yet)
+sparse = {1}

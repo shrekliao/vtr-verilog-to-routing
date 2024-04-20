@@ -1,7 +1,2 @@
-,n2_lut5,n1_lut6,N,I,O,K,fs,fcin,fcout,autolayout,custom_switch,one_mult_27x27,two_mult_18x19,mult_9x9_fixed_pt_mode,sop_2_mode,mult_add_mode_18_19_36,mult_add_mode_27_27_64,sop_4_mode,sop_4_accum_mode,mac_27x27_fixed_pt_mode,mac_18x19_fixed_pt_mode,mac_9x9_fixed_pt_mode,mult_fp32_mode,mult_fp16_mode,adder_fp32_mode,adder_fp16_mode,mult_fp32_clocked_mode,mult_fp16_clocked_mode,adder_fp32_clocked_mode,adder_fp16_clocked_mode,mac_fp32_mode,mac_fp16_mode,fp16_sum_of_products_mode,fp16_sum_of_products_2_mult_mode,fp16_sum_of_products_2_accum_mode,fp16_mult_fp32_add,fp16_mult_fp32_accum,fp32_mult_then_add,fp32_mult_add,mem_512x40_sp,mem_1024x20_sp,mem_2048x10_sp,mem_1024x20_dp,mem_2048x10_dp
-arch_test/stratix.xml_0.xml,on,on,10,60,40,6,3,0.15,0.1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-arch_test/stratix.xml_1.xml,on,on,10,60,40,6,4,0.15,0.1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-arch_test/stratix.xml_2.xml,on,off,10,60,40,6,3,0.15,0.1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-arch_test/stratix.xml_3.xml,on,off,10,60,40,6,4,0.15,0.1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-arch_test/stratix.xml_4.xml,off,on,10,60,40,6,3,0.15,0.1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-arch_test/stratix.xml_5.xml,off,on,10,60,40,6,4,0.15,0.1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+,flut6,n2lut5_with_n1lut6,fs,fcin,fcout,switch_block_type,switch_box_type,sparse
+test/stratix.xml_1.xml,off,don't care,3,0.15,0.1,0,0,1

@@ -1,12 +1,14 @@
 {
-    "test/stratix.xml_0.xml": {
+    "../arch/arch_gen/stratix.xml_1.xml": {
         "flut6": 0,
         "n2lut5_with_n1lut6": 1,
         "fs": 3,
         "fcin": 0.15,
         "fcout": 0.1,
-        "autolayout": 1,
+        "wire_length": 1,
+        "auto_layout": 1,
         "switch_block_type": 0,
-        "switch_box_type": 0
+        "switch_box_type": 0,
+        "sparse": 1
     }
 }

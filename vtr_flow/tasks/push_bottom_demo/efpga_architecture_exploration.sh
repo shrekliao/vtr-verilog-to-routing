@@ -9,7 +9,7 @@
 #Inputs: An architecture template file (.xml), and a list of parameters to vary (.txt).
 #Outputs: Generated architecture files (in the Architecture folder), and a table of all the architectrues with detail parameters (arch_dict.csv)
 #############################################################################
-python3 ../../mako_arch_gen/arch_render_0404_dict.py -i ../../mako_arch_gen/arch_template_0402.xml -o Architectures/stratix.xml -p ../../mako_arch_gen/values.txt
+python3 ../../mako_arch_gen/arch_render_0404_dict.py -i ../../mako_arch_gen/arch_template_0404.xml -o Architectures/stratix.xml -p ../../mako_arch_gen/values.txt
   
 #############################################################################
 #2. Generate config file for VTR tasks

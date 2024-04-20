@@ -1,1 +1,37 @@
-python3 arch_render_march0315_dict.py -i arch_template_0402.xml -o ../arch/arch_gen/stratix.xml -p values.txt
+python3 arch_render_0404_dict.py -i arch_template_0404.xml -o ../arch/arch_gen/stratix.xml -p values.txt
+
+Architecture Template Structure:
+% if flut6:
+% else:
+% endif   
+
+% if auto_layout:
+% else:
+% endif 
+
+% if switch_block_type == 0:
+% elif switch_block_type == 1:
+% elif switch_block_type == 2:
+% endif
+
+% if switch_box_type == 0:
+% elif switch_box_type == 1:
+% elif switch_box_type == 2:
+% endif
+
+% if switch_box_type == 0:
+% elif switch_box_type == 1:
+% elif switch_box_type == 2:
+% endif
+
+% if flut6:  
+   % if n2lut5_with_n1lut6:
+   % endif
+% else: 
+   % if sparse:
+   % else:
+   % endif
+% endif 
+
+% if wire_length:
+% endif 
