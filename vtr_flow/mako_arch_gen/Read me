@@ -1,4 +1,4 @@
-python3 arch_render_0404_dict.py -i arch_template_0404.xml -o ../arch/arch_gen/stratix.xml -p values.txt
+python3 arch_render_0404_dict.py -i arch_template_0531.xml -o ../arch/chengchieh_test/stratix.xml -p values.txt
 
 Architecture Template Structure:
 % if flut6:

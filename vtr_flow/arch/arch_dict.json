@@ -1,5 +1,5 @@
 {
-    "../arch/arch_gen/stratix.xml_1.xml": {
+    "../arch/chengchieh_test/stratix.xml_1.xml": {
         "flut6": 0,
         "n2lut5_with_n1lut6": 1,
         "fs": 3,
@@ -8,7 +8,7 @@
         "wire_length": 1,
         "auto_layout": 1,
         "switch_block_type": 0,
-        "switch_box_type": 0,
-        "sparse": 1
+        "switch_type": 0,
+        "sparse": 0
     }
 }

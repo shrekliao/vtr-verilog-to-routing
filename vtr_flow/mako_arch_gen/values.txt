@@ -1,7 +1,7 @@
 #Note: be careful for the spaces
 
 #CLB TYPE (decide lut mode) flut6 off means only lut6 (N10)
-flut6 = {0} 
+flut6 = {0, 1} 
 n2lut5_with_n1lut6 = {0, 1} # only when flut6 is 1 , need to consider is it only n2lut5 or with n1lut6
 
 # Switch box flexibility (check: When using unidirectional segments, one can specify an Fs that is any multiple of 3?)
@@ -23,5 +23,5 @@ switch_block_type = {0}
 # sitch type (0: mux(unidir), 1:trsisate(bidir))
 switch_type = {0}
 
-# sparse local matrix (0:50%sparse, 1:full) only the lut6 (script not fix yet)
-sparse = {1}
+# sparse local matrix (0:50%sparse, 1:full)
+full_crossbar = {0, 1}

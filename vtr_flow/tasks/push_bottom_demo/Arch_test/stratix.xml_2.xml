@@ -259,19 +259,6 @@
          Can't use this inside DSP slice
          because ODIN gets confused and starts to connect multi
          bit adders and single bit adders in different PBs -->
-    <!--
-    <model name="adder">
-      <input_ports>
-        <port name="a" combinational_sink_ports="cout sumout"/>
-        <port name="b" combinational_sink_ports="cout sumout"/>
-        <port name="cin" combinational_sink_ports="cout sumout"/>
-      </input_ports>
-      <output_ports>
-        <port name="cout"/>
-        <port name="sumout"/>
-      </output_ports>
-    </model>
-     -->
     <!-- Multi bit floating point adder inside DSP slices -->
     <model name="addition_fp_16">
       <input_ports>
