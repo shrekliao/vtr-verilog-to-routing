@@ -1,7 +1,5 @@
-,flut6,n2lut5_with_n1lut6,fs,fcin,fcout,wire_length,auto_layout,switch_block_type,switch_type,full_crossbar
-Arch_test/stratix.xml_2.xml,off,don't care,3,0.15,0.1,1,1,0,0,0
-Arch_test/stratix.xml_3.xml,off,don't care,3,0.15,0.1,1,1,0,0,1
-Arch_test/stratix.xml_4.xml,on,off,3,0.15,0.1,1,1,0,0,0
-Arch_test/stratix.xml_5.xml,on,off,3,0.15,0.1,1,1,0,0,1
-Arch_test/stratix.xml_6.xml,on,on,3,0.15,0.1,1,1,0,0,0
-Arch_test/stratix.xml_7.xml,on,on,3,0.15,0.1,1,1,0,0,1
+,flut6,fs,fcin,fcout,wire_length,auto_layout,switch_block_type,switch_type,full_crossbar
+Arch_test/stratix.xml_0.xml,off,3,0.15,0.1,1,1,0,0,0
+Arch_test/stratix.xml_1.xml,off,3,0.15,0.1,1,1,0,0,1
+Arch_test/stratix.xml_2.xml,on,3,0.15,0.1,1,1,0,0,0
+Arch_test/stratix.xml_3.xml,on,3,0.15,0.1,1,1,0,0,1

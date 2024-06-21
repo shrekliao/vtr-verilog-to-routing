@@ -2,14 +2,14 @@
 
 #CLB TYPE (decide lut mode) flut6 off means only lut6 (N10)
 flut6 = {0, 1} 
-n2lut5_with_n1lut6 = {0, 1} # only when flut6 is 1 , need to consider is it only n2lut5 or with n1lut6
+#n2lut5_with_n1lut6 =  # only when flut6 is 1 , need to consider is it only n2lut5 or with n1lut6 ??? why not just include n2_lut5 or not???
 
 # Switch box flexibility (check: When using unidirectional segments, one can specify an Fs that is any multiple of 3?)
 fs = {3}
 
 # Connection box flexibility
 fcin = { 0.15}
-fcout = { 0.1}
+fcout = { 0.10}
 
 # wire length only (0:L4, 1:L4+L16): check: currently simply remove L16
 wire_length = {1}

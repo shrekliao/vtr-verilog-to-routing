@@ -1,7 +1,28 @@
 {
-    "Arch_test/stratix.xml_2.xml": {
+    "Arch_test/stratix.xml_0.xml": {
         "flut6": 0,
-        "n2lut5_with_n1lut6": 1,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "wire_length": 1,
+        "auto_layout": 1,
+        "switch_block_type": 0,
+        "switch_type": 0,
+        "full_crossbar": 0
+    },
+    "Arch_test/stratix.xml_1.xml": {
+        "flut6": 0,
+        "fs": 3,
+        "fcin": 0.15,
+        "fcout": 0.1,
+        "wire_length": 1,
+        "auto_layout": 1,
+        "switch_block_type": 0,
+        "switch_type": 0,
+        "full_crossbar": 1
+    },
+    "Arch_test/stratix.xml_2.xml": {
+        "flut6": 1,
         "fs": 3,
         "fcin": 0.15,
         "fcout": 0.1,
@@ -12,56 +33,7 @@
         "full_crossbar": 0
     },
     "Arch_test/stratix.xml_3.xml": {
-        "flut6": 0,
-        "n2lut5_with_n1lut6": 1,
-        "fs": 3,
-        "fcin": 0.15,
-        "fcout": 0.1,
-        "wire_length": 1,
-        "auto_layout": 1,
-        "switch_block_type": 0,
-        "switch_type": 0,
-        "full_crossbar": 1
-    },
-    "Arch_test/stratix.xml_4.xml": {
         "flut6": 1,
-        "n2lut5_with_n1lut6": 0,
-        "fs": 3,
-        "fcin": 0.15,
-        "fcout": 0.1,
-        "wire_length": 1,
-        "auto_layout": 1,
-        "switch_block_type": 0,
-        "switch_type": 0,
-        "full_crossbar": 0
-    },
-    "Arch_test/stratix.xml_5.xml": {
-        "flut6": 1,
-        "n2lut5_with_n1lut6": 0,
-        "fs": 3,
-        "fcin": 0.15,
-        "fcout": 0.1,
-        "wire_length": 1,
-        "auto_layout": 1,
-        "switch_block_type": 0,
-        "switch_type": 0,
-        "full_crossbar": 1
-    },
-    "Arch_test/stratix.xml_6.xml": {
-        "flut6": 1,
-        "n2lut5_with_n1lut6": 1,
-        "fs": 3,
-        "fcin": 0.15,
-        "fcout": 0.1,
-        "wire_length": 1,
-        "auto_layout": 1,
-        "switch_block_type": 0,
-        "switch_type": 0,
-        "full_crossbar": 0
-    },
-    "Arch_test/stratix.xml_7.xml": {
-        "flut6": 1,
-        "n2lut5_with_n1lut6": 1,
         "fs": 3,
         "fcin": 0.15,
         "fcout": 0.1,
